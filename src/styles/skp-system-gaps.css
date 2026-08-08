@@ -1,0 +1,111 @@
+/* ============================================================================
+   SKP SOLAR WORLD — HANDOFF GAPS
+   ============================================================================
+   Rules the approved design *uses in markup* but never defines in any
+   stylesheet. Without them the affected elements render unstyled.
+
+   These are the only additions to the approved CSS in this project. Everything
+   else in `src/styles/` is a verbatim port. Each entry below records what was
+   missing and how the value was derived, so the client can confirm or correct
+   it against the approved comps.
+
+   ── 1. `.fbtn-gold` / `.fbtn-ghost` / `.fbtn-wa` ───────────────────────────
+   `skp-system.css` defines the `.fbtn` base (layout, radius, type, transition)
+   but no colour variants, while `SKP-Home`, `SKP-Products`, `SKP-Contact`,
+   `SKP-Why-SKP`, `SKP-Calculator` and `SKP-Book` all render
+   `class="fbtn fbtn-gold|fbtn-ghost|fbtn-wa"` inside the final CTA band.
+
+   The values below reuse the design's existing button language exactly:
+     · gold  → the `.cta` treatment (gold → gold-bright on hover, navy text)
+     · ghost → the `.cta-ghost.on-dark` treatment (the band is always navy)
+     · wa    → the `.ft-wa` / `.wa` WhatsApp treatment (#25d366)
+   No new colours, radii, shadows or timings are introduced.
+   ============================================================================ */
+
+.fbtn-gold {
+  background: var(--gold);
+  color: var(--navy);
+}
+.fbtn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(244, 165, 42, 0.35);
+  background: var(--gold-bright);
+  color: var(--navy);
+}
+.fbtn-gold .circ {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.7px solid var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.fbtn-gold .circ svg {
+  width: 12px;
+  height: 12px;
+  stroke: var(--navy);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fbtn-gold svg {
+  stroke: var(--navy);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fbtn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+.fbtn-ghost:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-bright);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+.fbtn-ghost svg {
+  stroke: var(--gold-bright);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fbtn-wa {
+  background: #25d366;
+  color: #fff;
+}
+.fbtn-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(37, 211, 102, 0.35);
+  color: #fff;
+}
+.fbtn-wa svg {
+  fill: #fff;
+  stroke: none;
+}
+
+/* ── 2. Placeholder image slots ─────────────────────────────────────────────
+   The approved pages used a custom `<image-slot>` element for imagery not yet
+   supplied (HANDOFF.md §8). That element does not exist outside the design
+   runtime, so the sizing rules it carried — `.tst-av image-slot`,
+   `.tst-logos-row image-slot` — no longer apply to anything.
+
+   These re-point the same sizes at the plain elements that replaced it, so the
+   placeholder boxes keep their approved dimensions until real photography and
+   client logos arrive. Delete these once every slot has a real image. */
+
+.tst-logos-row .tst-logo-slot {
+  width: 124px;
+  height: 46px;
+  display: block;
+  border-radius: 8px;
+  background: rgba(14, 26, 60, 0.06);
+}
