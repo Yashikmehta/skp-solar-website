@@ -643,6 +643,24 @@
   .book-obj{transform:rotateY(-22deg) rotateX(6deg) scale(.78)}
   .book-why{font-size:.92rem}
   .book-learn li{font-size:.88rem}
+  /* Book CTAs placed side by side and reduced 10% on phones at the client's
+     request (2026-08-08). Mobile only, and scoped to `.book` so the shared
+     .cta / .cta-ghost used by the hero, calculator and FAQ are untouched.
+     They cannot sit side by side at handoff width: the two need 510px and only
+     345px is available. So each takes half the row (flex:1 1 0) and the longer
+     label wraps inside. Horizontal padding is cut below 10% to give that label
+     room; the type, arrow badge and vertical padding carry the 10%.
+     align-items:stretch keeps both the same height despite different wrapping. */
+  .book .cta-row{flex-wrap:nowrap;gap:10px;align-items:stretch}
+  .book .cta-row>*{flex:1 1 0;min-width:0;justify-content:center;text-align:center}
+  /* Second 10% reduction on the same two buttons (2026-08-08), i.e. 81% of the
+     handoff size. Was: .cta .864rem / pad 11.7-10 / circ 30.6 / svg 13.5;
+     .cta-ghost .9rem / pad 12.6-10 / svg 15.3. */
+  .book .cta-row .cta{font-size:.778rem;padding:10.5px 9px;gap:7.2px}
+  .book .cta-row .cta .circ{width:27.5px;height:27.5px}
+  .book .cta-row .cta .circ svg{width:12.2px;height:12.2px}
+  .book .cta-row .cta-ghost{font-size:.81rem;padding:11.3px 9px;gap:6.3px}
+  .book .cta-row .cta-ghost svg{width:13.8px;height:13.8px}
   /* --- Testimonials --- */
   .tst-top{margin-bottom:22px}
   .tst-masonry{column-count:1}
