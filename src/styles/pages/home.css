@@ -91,7 +91,7 @@
 .sol-mob{display:none}
 .sol-swipe-hint{text-align:center;font-size:.8rem;color:#94a0b0;margin:-26px 0 14px}
 .sol-stack{position:relative;height:430px;perspective:1200px;max-width:360px;margin:0 auto 22px;touch-action:pan-y}
-.sol-card{position:absolute;left:50%;top:8px;width:62%;height:392px;transform-style:preserve-3d;transition:transform .58s cubic-bezier(.34,1.42,.5,1),opacity .5s ease,filter .5s ease;cursor:pointer;will-change:transform}
+.sol-card{position:absolute;left:50%;top:8px;width:62%;height:392px;border-radius:26px;overflow:hidden;transform-style:preserve-3d;transition:transform .58s cubic-bezier(.34,1.42,.5,1),opacity .5s ease,filter .5s ease;cursor:pointer;will-change:transform}
 .sol-card-inner{height:100%;border-radius:26px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
 .sol-card-img{flex:1.15;position:relative;overflow:hidden;background:var(--navy)}
 .sol-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
