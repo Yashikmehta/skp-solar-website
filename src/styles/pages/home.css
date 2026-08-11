@@ -600,21 +600,40 @@
      with an absolutely-positioned image, so it has no intrinsic width and
      collapses to 0. */
   .fdr-photo-col{width:100%;max-width:276px;justify-self:center}
-  .fdr-statcard{padding:10px 13px}
-  .fdr-statcard .v{font-size:1.3rem}
+  /* "30+ Years in manufacturing" stat card hidden on phones at the client's
+     request (2026-08-08). Mobile only — it still shows on tablet and desktop.
+     Reason: capping the portrait at 276px above narrowed the name card inside
+     it, so the role line wrapped to two lines and this card (pinned bottom
+     right) covered 181x29px of it, hiding "SKP Solar World".
+     If you want the stat back instead, delete this rule and move the card clear
+     of the name card, e.g. .fdr-statcard{top:-14px;bottom:auto;right:8px} —
+     that puts it above the photo rather than over the caption. */
+  .fdr-statcard{display:none}
   .fdr-namecard{padding:11px 14px}
   .fdr-namecard b{font-size:.95rem}
   .fdr-quote{font-size:1.15rem;line-height:1.24;margin:2px 0 10px}
-  .fdr-vm{gap:10px;margin:12px 0 4px}
-  .fdr-vm .card{padding:12px 14px}
-  .fdr-vm .ic{width:32px;height:32px;border-radius:9px;margin-bottom:7px}
-  .fdr-vm .ic svg{width:18px;height:18px}
-  .fdr-vm h4{font-size:.95rem;margin-bottom:4px}
-  .fdr-vm p{font-size:.84rem;line-height:1.45}
-  .fdr-journey{gap:12px;margin:14px 0 4px}
-  .fdr-mile .dot{margin-bottom:8px}
-  .fdr-mile .yr{font-size:.95rem}
-  .fdr-mile .ev{font-size:.76rem;line-height:1.35;margin-top:3px}
+  /* Vision / Mission cards taken down a further 20% in height on phones at the
+     client's request (2026-08-08). Mobile only. Was 128px per card:
+     padding 12 · icon 32 (+7 below) · h4 15.2px (+4) · body 13.44px/lh 1.45.
+     Body drops to 12.5px — still above the ~12px floor we settled on for the
+     value cards — and the rest comes out of the icon and the vertical gaps. */
+  .fdr-vm{gap:8px;margin:10px 0 4px}
+  .fdr-vm .card{padding:7.5px 12px}
+  .fdr-vm .ic{width:26px;height:26px;border-radius:8px;margin-bottom:4px}
+  .fdr-vm .ic svg{width:15px;height:15px}
+  .fdr-vm h4{font-size:.88rem;margin-bottom:3px}
+  .fdr-vm p{font-size:.78rem;line-height:1.35}
+  /* Milestone timeline (1992 / 2019 / 2021 / Today) hidden on phones at the
+     client's request (2026-08-08). Mobile only — it still shows on tablet and
+     desktop. On phones it stacked to four full-width rows and ran ~270px tall.
+     The milestones themselves are untouched in src/content/home.ts, so deleting
+     this one rule brings the whole timeline back.
+     Sizing we had applied to it, if you restore it:
+       .fdr-journey{gap:12px;margin:14px 0 4px}
+       .fdr-mile .dot{margin-bottom:8px}
+       .fdr-mile .yr{font-size:.95rem}
+       .fdr-mile .ev{font-size:.76rem;line-height:1.35;margin-top:3px}  */
+  .fdr-journey{display:none}
   .fdr-sign{gap:14px;margin-top:14px;padding-top:12px}
   .fdr-sign svg{width:112px;height:42px}
   /* --- Book --- */
