@@ -181,8 +181,8 @@ header.stuck{border-color:var(--line);box-shadow:0 8px 30px rgba(14,26,60,.07);b
 @media(max-width:760px){
   .wrap{padding:0 18px}
   header{padding:14px 0}
-  .dms{font-size:.82rem;padding:10px 16px}
-  .dms svg{width:14px;height:14px}
+  .dms{font-size:.74rem;padding:7px 12px;gap:5px}
+  .dms svg{width:12px;height:12px}
   .sec-head2{margin-bottom:26px}
   .sec-head2 p{font-size:.94rem;line-height:1.55}
   .nav-actions .pill{display:none}

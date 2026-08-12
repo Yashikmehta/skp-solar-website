@@ -136,6 +136,7 @@ a:hover{color:var(--gold)}
 .ind-card .ic svg{width:21px;height:21px;stroke:var(--gold-bright);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .ind-card b{display:block;font-family:'Sora';font-weight:700;font-size:.84rem;color:var(--navy);line-height:1.25}
 .gal-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gal-dots{display:none}
 .gal-card{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(14,26,60,.05);border:1.5px solid var(--line);background:var(--navy);aspect-ratio:4/3}
 .gal-imgwrap{position:absolute;inset:0;overflow:hidden}
 .gal-imgwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
@@ -216,13 +217,38 @@ a:hover{color:var(--gold)}
   .proc-ghost{display:none}
 }
 @media(max-width:760px){
-  .whero{padding:2px 0 34px}
-  .whero h1{margin-bottom:14px}
-  .whero .sub{font-size:1.02rem;margin-bottom:22px;line-height:1.5}
+  .whero{padding:2px 0 32px}
+  .whero-visual{height:min(408px,84vw);margin-bottom:5px}
+  .whero h1{margin-bottom:11px}
+  .whero .sub{font-size:.98rem;margin-bottom:19px;line-height:1.46}
+  .whero-trust{margin-top:30px;padding-top:19px;gap:9px 20px}
+  .whero-trust span{font-size:.83rem}
+  .whero-copy .cta-row{flex-wrap:nowrap;gap:8px;justify-content:center}
+  .whero-copy .cta-row .cta{font-size:.72rem;padding:9px 14px 9px 9px;gap:6px;white-space:nowrap}
+  .whero-copy .cta-row .cta .circ{width:22px;height:22px;border-width:1.5px}
+  .whero-copy .cta-row .cta .circ svg{width:10px;height:10px}
+  .whero-copy .cta-row .cta-ghost{font-size:.72rem;padding:9px 12px;white-space:nowrap}
   .leg,.why,.war,.proc,.trust{padding:40px 0 44px}
   .why .sec-head2{margin-bottom:24px}
   .why-grid{grid-template-columns:1fr;gap:12px}
-  .why-card{padding:18px 18px}
+  .why-card{padding:14px 16px}
+  .why-emblem{width:36px;height:36px;border-radius:10px;margin-bottom:9px}
+  .why-emblem svg{width:18px;height:18px}
+  .why-num{top:12px;right:16px;font-size:.76rem}
+  .why-card h3{font-size:.96rem;margin-bottom:4px}
+  .why-card p{font-size:.8rem;line-height:1.42}
+  .why-tag{margin-top:8px;font-size:.65rem;gap:5px}
+  .why-tag svg{width:12px;height:12px}
+  .gal-strip{display:flex;grid-template-columns:none;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -18px;padding:4px 18px 4px;scroll-padding-left:18px}
+  .gal-strip::-webkit-scrollbar{display:none}
+  .gal-card{flex:0 0 82%;scroll-snap-align:start;aspect-ratio:3/2}
+  .gal-type{padding:5.5px 11px;font-size:.66rem}
+  .gal-info{padding:16px 18px 18px}
+  .gal-size{font-size:1.4rem;margin-bottom:5px}
+  .gal-loc{font-size:.76rem}
+  .gal-dots{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:14px}
+  .gal-dot{height:7px;width:7px;border-radius:100px;background:#cdd6e0;cursor:pointer;transition:width .35s cubic-bezier(.34,1.4,.5,1),background .35s;border:none;padding:0}
+  .gal-dot.active{width:22px;background:var(--green)}
   .leg-grid,.war-grid{gap:32px}
   .leg-cards,.war-cards{grid-template-columns:1fr;gap:12px}
   .leg-statcard{left:-6px}
@@ -240,10 +266,23 @@ a:hover{color:var(--gold)}
   .trust-label{margin:32px 0 14px}
   .tst-logos{margin-top:30px;padding-top:26px}
   .tst-logos-row{gap:22px}
-  .proc-cta{margin-top:28px}
+  .proc{padding:38px 0 42px}
+  #process .sec-kicker{margin-bottom:10px}
+  #process .sec-head2{margin-bottom:25px}
+  #process .sec-head2 h2{font-size:1.72rem;margin-bottom:13px}
+  #process .sec-head2 p{font-size:.85rem;line-height:1.48}
+  .proc-step{padding:10px 0}
+  .proc-node{width:44px;height:44px}
+  .proc-node span{width:32px;height:32px}
+  .proc-node svg{width:16px;height:16px}
+  .proc-card{padding:16px 19px}
+  .proc-card .st{margin-bottom:5px}
+  .proc-card h4{font-size:1.02rem;margin-bottom:4px}
+  .proc-card p{font-size:.8rem;line-height:1.45}
+  .proc-cta{margin-top:26px}
 }
 @media(max-width:460px){
-  .whero h1{font-size:clamp(1.9rem,8vw,2.5rem)}
+  .whero h1{font-size:clamp(1.81rem,7.6vw,2.375rem)}
   .wv-stat{padding:12px 15px}
   .leg-statcard{padding:12px 15px}
 }
