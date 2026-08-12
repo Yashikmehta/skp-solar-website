@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AmbientOrb } from '@/components/ui/AmbientOrb';
 import { Counter } from '@/components/ui/Counter';
 import { Icon } from '@/components/ui/Icon';
@@ -34,7 +34,36 @@ function Stars() {
  */
 export function TrustSection() {
   const gridRef = useRef<HTMLDivElement>(null);
+  const galStripRef = useRef<HTMLDivElement>(null);
+  const [activeProject, setActiveProject] = useState(0);
   const reduced = usePrefersReducedMotion();
+
+  /* Mobile swipe carousel — track which project card is in view so the
+     dot indicator below the strip can highlight it. */
+  useEffect(() => {
+    const strip = galStripRef.current;
+    if (!strip) return;
+    const cards = Array.from(strip.querySelectorAll<HTMLElement>('.gal-card'));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = cards.indexOf(entry.target as HTMLElement);
+            if (idx !== -1) setActiveProject(idx);
+          }
+        });
+      },
+      { root: strip, threshold: 0.6 },
+    );
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToProject = (index: number) => {
+    const strip = galStripRef.current;
+    const card = strip?.querySelectorAll<HTMLElement>('.gal-card')[index];
+    card?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  };
 
   /* Before/after bar fill, same behaviour as the homepage. */
   useEffect(() => {
@@ -127,7 +156,7 @@ export function TrustSection() {
         <div className="trust-label reveal">
           <i /> Recent Projects
         </div>
-        <div className="gal-strip">
+        <div className="gal-strip" ref={galStripRef}>
           {recentProjects.map((project, index) => (
             <div className={`gal-card reveal dly${index + 1}`} key={project.location}>
               <div className="gal-imgwrap">
@@ -149,6 +178,24 @@ export function TrustSection() {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+        <div className="gal-dots">
+          {recentProjects.map((project, index) => (
+            <span
+              key={project.location}
+              className={`gal-dot${index === activeProject ? ' active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-label={`Show project ${index + 1}`}
+              onClick={() => scrollToProject(index)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  scrollToProject(index);
+                }
+              }}
+            />
           ))}
         </div>
 
