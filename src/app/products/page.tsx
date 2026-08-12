@@ -3,7 +3,6 @@ import Image from 'next/image';
 import '@/styles/pages/products.css';
 
 import { ComparisonTable } from '@/components/products/ComparisonTable';
-import { Downloads } from '@/components/products/Downloads';
 import { ProductCatalogue } from '@/components/products/ProductCatalogue';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { Hl } from '@/components/ui/SectionHeading';
@@ -69,7 +68,6 @@ export default function ProductsPage() {
 
       <ProductCatalogue />
       <ComparisonTable />
-      <Downloads />
 
       <FinalCta
         kicker="Start your solar journey"

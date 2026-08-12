@@ -44,6 +44,8 @@ export function ComparisonTable() {
           body="Three proven technologies, honestly compared — so you pick on engineering, not on marketing."
         />
 
+        <p className="cmp-swipe-hint" aria-hidden="true">Swipe to see more &rarr;</p>
+
         <div className="cmp-scroll reveal dly1" tabIndex={0} role="region" aria-label="Module comparison">
           <table className="cmp-table">
             <thead>

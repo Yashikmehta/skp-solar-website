@@ -170,6 +170,11 @@ a:hover{color:var(--gold)}
 .dots i{width:9px;height:9px;border-radius:50%;background:#e3e9f1}
 .dots i.on{background:linear-gradient(135deg,var(--green),var(--gold))}
 .cmp-note{font-size:.78rem;color:#94a0b0;margin-top:14px;position:relative;z-index:2}
+.cmp-swipe-hint{display:none}
+@keyframes cmpHintNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+@media(prefers-reduced-motion:reduce){
+  .cmp-swipe-hint{animation:none}
+}
 /* ===== Downloads ===== */
 .pdl{padding:52px 0 56px;background:linear-gradient(180deg,#f3f7fb 0%,#ffffff 100%);border-top:1px solid var(--line);position:relative;overflow:hidden}
 .dl-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;position:relative;z-index:2}
@@ -205,7 +210,9 @@ a:hover{color:var(--gold)}
 }
 @media(max-width:760px){
   .phero{padding:4px 0 4px}
-  .phero .sub{font-size:1rem;margin-bottom:24px;line-height:1.55}
+  .phero-kicker{display:none}
+  .phero h1{margin-bottom:14px}
+  .phero .sub{font-size:.96rem;margin-bottom:22px;line-height:1.5}
   .phero-frame{width:min(378px,77.4vw)}
   .phero-chip{padding:9px 12.6px}
   .phero-chip .v{font-size:.97rem}
@@ -213,6 +220,15 @@ a:hover{color:var(--gold)}
   .pcats-row{justify-content:flex-start;gap:24px;padding-top:14px}
   .pcats-row button{padding-bottom:13px}
   .pmod,.pinv,.popt,.pflex,.pcmp,.pdl{padding:36px 0 42px}
+  .ppanel .sec-head2{margin-bottom:23px}
+  .ppanel .sec-kicker{margin-bottom:12px}
+  .ppanel .sec-head2 h2{margin-bottom:13px}
+  .ppanel .sec-head2 p{font-size:.85rem;line-height:1.45}
+  .pcmp .sec-head2{margin-bottom:23px}
+  .pcmp .sec-kicker{margin-bottom:12px}
+  .pcmp .sec-head2 h2{margin-bottom:13px}
+  .pcmp .sec-head2 p{font-size:.85rem;line-height:1.45}
+  .cmp-swipe-hint{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:.78rem;font-weight:600;color:var(--green);margin:0 0 10px;animation:cmpHintNudge 1.6s ease-in-out infinite}
   .pm-grid{grid-template-columns:1fr;gap:14px}
   .pm-card:last-child{grid-column:auto}
   .pm-img{aspect-ratio:16/9}
@@ -246,7 +262,7 @@ a:hover{color:var(--gold)}
   .dl-card .go{font-size:.7rem}
 }
 @media(max-width:520px){
-  .phero h1{font-size:clamp(1.7rem,7.6vw,2.3rem)}
+  .phero h1{font-size:clamp(1.53rem,6.84vw,2.07rem)}
   .phero-chip{padding:9px 13px}
   .phero-chip .v{font-size:1.05rem}
   .phero-chip.c3{left:12px}
