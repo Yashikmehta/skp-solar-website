@@ -260,14 +260,15 @@ a:hover{color:var(--gold)}
   .syn-card .ic svg{width:15px;height:15px}
   .syn-card b{font-size:.84rem;margin-bottom:3px}
   .syn-card span{font-size:.72rem;line-height:1.35}
-  .opt-flow{flex-direction:column;align-items:center;gap:0;max-width:320px}
-  .opt-node{width:100%;max-width:none;padding:14px 14px 13px}
-  .opt-node .em{width:42px;height:42px;border-radius:12px;margin-bottom:9px}
-  .opt-node .em svg{width:21px;height:21px}
-  .opt-node b{font-size:.9rem}
-  .opt-node .stepnum{top:10px;right:12px}
-  .opt-link{width:24px;height:34px;transform:rotate(90deg)}
-  .opt-desc{margin-bottom:28px}
+  .opt-flow{flex-direction:column;align-items:center;gap:0;max-width:320px;margin-bottom:12px}
+  .opt-node{width:100%;max-width:none;padding:12px 12px 11px;border-radius:15px}
+  .opt-node .em{width:36px;height:36px;border-radius:10px;margin-bottom:8px;box-shadow:0 6px 16px rgba(14,26,60,.16)}
+  .opt-node .em svg{width:18px;height:18px}
+  .opt-node b{font-size:.77rem;margin-bottom:2px}
+  .opt-node span{font-size:.6rem;letter-spacing:.04em}
+  .opt-node .stepnum{top:8px;right:10px;font-size:.61rem}
+  .opt-link{width:20px;height:29px;transform:rotate(90deg)}
+  .opt-desc{margin-bottom:24px;font-size:.86rem;min-height:38px}
   .opt-benefits{grid-template-columns:1fr 1fr;gap:11px}
   .opt-b{padding:14px 14px}
   .dl-grid{grid-template-columns:repeat(2,1fr)}
