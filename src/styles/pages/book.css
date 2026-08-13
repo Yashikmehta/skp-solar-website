@@ -233,16 +233,54 @@ a:hover{color:var(--gold)}
   .learn-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:760px){
-  .book,.story,.learn,.peek{padding:40px 0 44px}
-  .book .sec-head2{margin-bottom:22px}
-  .book-grid{gap:30px}
-  .book-stage{min-height:340px}
-  .book-obj{transform:rotateY(-22deg) rotateX(6deg) scale(.78)}
-  .book-why{font-size:.92rem}
-  .book-learn li{font-size:.88rem}
-  .book-ach .a{flex:1;min-width:0}
+  .story,.learn,.peek{padding:40px 0 44px}
+  #book{padding:32px 0 35px}
+  #book .book-crumb{margin-bottom:16px;font-size:.62rem;gap:7px}
+  #book .book-crumb svg{width:10px;height:10px}
+  #book .sec-head2{margin-bottom:18px}
+  #book .sec-head2 h2{font-size:clamp(1.18rem,2.16vw,1.66rem)}
+  #book .sec-head2 p{font-size:.69rem;line-height:1.28}
+  #book .book-grid{gap:24px}
+  #book .book-stage{min-height:272px}
+  #book .book-obj{transform:rotateY(-22deg) rotateX(6deg) scale(.62)}
+  #book .book-shadow{bottom:14px;width:176px;height:21px}
+  #book .book-badge{top:19px;right:19px;font-size:.58rem;padding:7px 11px;gap:6px}
+  #book .book-badge svg{width:11px;height:11px}
+  #book .book-spin-hint{font-size:.58rem;padding:6px 10px;gap:6px;bottom:5px}
+  #book .book-spin-hint svg{width:11px;height:11px}
+  #book .book-why{font-size:.74rem;line-height:1.28;margin-bottom:3px}
+  #book .book-learn{margin:13px 0 3px;gap:7px}
+  #book .book-learn li{font-size:.7rem;gap:9px;line-height:1.14}
+  #book .book-learn .ck{width:18px;height:18px;border-radius:5px}
+  #book .book-learn .ck svg{width:10px;height:10px}
+  #book .book-ach{gap:9px;margin:13px 0 2px}
+  #book .book-ach .a{padding:9px 12px;border-radius:11px;min-width:0;flex:1}
+  #book .book-ach .v{font-size:1.04rem}
+  #book .book-ach .k{font-size:.56rem;margin-top:4px}
+  #book .cta-row{margin-top:21px;gap:11px}
+  #book .cta-row .cta{font-size:.77rem;padding:10px 19px 10px 11px}
+  #book .cta-row .cta .circ{width:27px;height:27px}
+  #book .cta-row .cta .circ svg{width:12px;height:12px}
+  #book .cta-row .cta-ghost{font-size:.77rem;padding:10px 16px}
+  #book .cta-row .cta-ghost svg{width:14px;height:14px}
   .story-grid{gap:30px;margin-top:18px}
-  .story-photo-col{max-width:none}
+  #story .story-photo-col{display:grid;grid-template-columns:1fr 1fr;gap:9px 10px;align-items:stretch;max-width:none;overflow:visible}
+  #story .story-photo{border-radius:16px;aspect-ratio:3/4;box-shadow:0 16px 36px rgba(14,26,60,.18);overflow:visible}
+  #story .story-photo img,#story .story-photo > span,#story .story-photo .ph-tint{border-radius:16px}
+  #story .story-photo > span{overflow:hidden}
+  #story .story-namecard{left:10px;right:10px;bottom:10px;padding:9px 11px;border-radius:12px}
+  #story .story-namecard b{font-size:.82rem}
+  #story .story-namecard span{font-size:.62rem;line-height:1.3}
+  #story .story-statcard{top:0;right:0;transform:translate(33%,-33%);z-index:2;padding:8px 10px;border-radius:12px;box-shadow:0 14px 30px rgba(14,26,60,.14)}
+  #story .story-statcard .v{font-size:.99rem}
+  #story .story-statcard .v span{font-size:.72rem}
+  #story .story-statcard .k{font-size:.47rem;margin-top:2px;letter-spacing:.04em}
+  #story .story-plant{margin-top:0;border-radius:16px;aspect-ratio:3/4}
+  #story .story-plant .cap{padding:10px 11px;font-size:.62rem;line-height:1.3}
+  #story .story-time{grid-column:1 / -1;margin-top:12px}
+  #story .story-mile{padding:0 0 14px 20px}
+  #story .story-mile .yr{font-size:.75rem}
+  #story .story-mile .ev{font-size:.68rem;line-height:1.35;margin-top:2px}
   .story-text p{font-size:.95rem}
   .story-vm{grid-template-columns:1fr;gap:12px}
   .learn-grid{grid-template-columns:1fr;gap:12px}
