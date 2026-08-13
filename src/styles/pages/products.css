@@ -206,7 +206,7 @@ a:hover{color:var(--gold)}
   .phero-chip.c1{left:-6px}
   .phero-chip.c2{right:-6px}
   .pi-split{grid-template-columns:1fr;gap:36px}
-  .pi-visual{max-width:480px;margin:0 auto}
+  .pi-visual{width:100%;max-width:480px;margin:0 auto}
 }
 @media(max-width:760px){
   .phero{padding:4px 0 4px}
@@ -220,6 +220,10 @@ a:hover{color:var(--gold)}
   .pcats-row{justify-content:flex-start;gap:24px;padding-top:14px}
   .pcats-row button{padding-bottom:13px}
   .pmod,.pinv,.popt,.pflex,.pcmp,.pdl{padding:36px 0 42px}
+  .pi-visual{width:80%}
+  .pi-chip{padding:10px 14px;bottom:-14px;right:14px}
+  .pi-chip .v{font-size:.96rem}
+  .pi-chip .k{font-size:.53rem}
   .ppanel .sec-head2{margin-bottom:23px}
   .ppanel .sec-kicker{margin-bottom:12px}
   .ppanel .sec-head2 h2{margin-bottom:13px}
@@ -246,10 +250,23 @@ a:hover{color:var(--gold)}
   .pm-btn .c{width:23px;height:23px}
   .pm-btn .c svg{width:11px;height:11px}
   .pm-btn.ghost{padding:8px 13.5px}
-  .syn{padding:26px 20px 28px;border-radius:22px}
+  .syn{padding:22px 18px 24px;border-radius:22px}
+  .syn-kicker{margin-bottom:10px}
+  .syn h3{margin-bottom:9px}
+  .syn .lead{font-size:.88rem;margin-bottom:18px;line-height:1.5}
+  .syn-grid{gap:10px;margin-bottom:18px}
+  .syn-card{padding:11px 13px}
+  .syn-card .ic{width:30px;height:30px;margin-bottom:8px}
+  .syn-card .ic svg{width:15px;height:15px}
+  .syn-card b{font-size:.84rem;margin-bottom:3px}
+  .syn-card span{font-size:.72rem;line-height:1.35}
   .opt-flow{flex-direction:column;align-items:center;gap:0;max-width:320px}
-  .opt-node{width:100%;max-width:none}
-  .opt-link{width:24px;height:48px;transform:rotate(90deg)}
+  .opt-node{width:100%;max-width:none;padding:14px 14px 13px}
+  .opt-node .em{width:42px;height:42px;border-radius:12px;margin-bottom:9px}
+  .opt-node .em svg{width:21px;height:21px}
+  .opt-node b{font-size:.9rem}
+  .opt-node .stepnum{top:10px;right:12px}
+  .opt-link{width:24px;height:34px;transform:rotate(90deg)}
   .opt-desc{margin-bottom:28px}
   .opt-benefits{grid-template-columns:1fr 1fr;gap:11px}
   .opt-b{padding:14px 14px}
@@ -260,13 +277,18 @@ a:hover{color:var(--gold)}
   .dl-card h4{font-size:.88rem;margin-bottom:3px}
   .dl-card p{font-size:.72rem;margin-bottom:8px;line-height:1.35}
   .dl-card .go{font-size:.7rem}
+  .pf-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pf-body{padding:14px 14px 15px}
+  .pf-body p{display:none}
+  .pf-body h4{font-size:.9rem;margin:14px 0 0}
+  .pf-ic{width:34px;height:34px;top:-17px;border-radius:10px}
+  .pf-ic svg{width:18px;height:18px}
 }
 @media(max-width:520px){
   .phero h1{font-size:clamp(1.53rem,6.84vw,2.07rem)}
   .phero-chip{padding:9px 13px}
   .phero-chip .v{font-size:1.05rem}
   .phero-chip.c3{left:12px}
-  .pf-grid{grid-template-columns:1fr}
   .pi-stats{grid-template-columns:1fr 1fr}
   .syn-grid{grid-template-columns:1fr}
   .opt-benefits{grid-template-columns:1fr}

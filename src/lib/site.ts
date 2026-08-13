@@ -85,7 +85,6 @@ export interface NavItem {
 export const navigation: NavItem[] = [
   { label: 'Home', href: ROUTES.home },
   { label: 'Products', href: ROUTES.products },
-  { label: 'Solutions', href: ROUTES.solutions },
   { label: 'Why SKP', href: ROUTES.why },
   { label: 'Calculator', href: ROUTES.calculator },
   { label: 'The Book', href: ROUTES.book },
