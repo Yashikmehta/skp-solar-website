@@ -291,6 +291,11 @@ a:hover{color:var(--gold)}
   .phero-chip.c3{left:12px}
   .pi-stats{grid-template-columns:1fr 1fr}
   .syn-grid{grid-template-columns:1fr}
-  .opt-benefits{grid-template-columns:1fr}
+  .opt-benefits{grid-template-columns:1fr 1fr;gap:9px}
+  .opt-b{padding:11px 11px 12px;border-radius:14px}
+  .opt-b .ic{width:30px;height:30px;border-radius:8px;margin-bottom:8px}
+  .opt-b .ic svg{width:16px;height:16px}
+  .opt-b b{font-size:.8rem;margin-bottom:3px;line-height:1.2}
+  .opt-b span{font-size:.68rem;line-height:1.35}
   .dl-grid{grid-template-columns:1fr}
 }
