@@ -95,20 +95,78 @@ a:hover{color:var(--gold)}
   .chero-visual{max-width:560px;margin:0 auto;width:100%}
 }
 @media(max-width:760px){
-  .chero h1{margin-bottom:16px}
-  .chero .sub{font-size:1.02rem;line-height:1.5}
+  .chero h1{font-size:clamp(1.84rem,3.36vw,2.96rem);margin-bottom:13px;line-height:1.05}
+  .chero .sub{font-size:.82rem;line-height:1.2;margin-bottom:5px}
+  .chero-copy .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:360px;margin-top:20px!important}
+  .chero-copy .cta-row .cta,.chero-copy .cta-row .cta-ghost{font-size:.68rem;padding:9px 10px 9px 8px;gap:5px;justify-content:center;text-align:center;white-space:normal;line-height:1.2;min-width:0}
+  .chero-copy .cta-row .cta .circ{width:20px;height:20px;border-width:1.5px;flex-shrink:0}
+  .chero-copy .cta-row .cta .circ svg{width:9px;height:9px}
+  .chero-copy .cta-row .cta-ghost{padding:9px 10px}
+  .chero-copy .cta-row .cta-ghost svg{width:14px;height:14px}
+  .chero-quick{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;width:100%;max-width:360px;margin-top:20px}
+  .chero-quick span{font-size:.72rem;line-height:1.3;gap:5px;align-items:flex-start}
+  .chero-quick svg{width:14px;height:14px;margin-top:1px}
+  .chero-quick span:nth-child(3){display:none}
   .chero-visual{min-height:0;aspect-ratio:1/1}
   .cv-stat{padding:12px 15px}
   .cv-stat .v{font-size:1.2rem}
   .cv-call{padding:11px 15px 11px 11px;right:0;gap:10px}
   .cv-call b{font-size:.88rem}
   .cv-sub{bottom:52px}
+  #enquiry{padding:32px 0 35px}
+  #enquiry .sec-head2{margin-bottom:19px}
+  #enquiry .sec-head2 h2{font-size:clamp(1.48rem,2.72vw,2.08rem);margin-bottom:12px}
+  #enquiry .sec-head2 p{font-size:.75rem;line-height:1.24}
+  #enquiry .git-grid{gap:16px}
+  #enquiry .gform{padding:18px 14px;border-radius:16px}
+  #enquiry .gform h3{font-size:.9rem;margin-bottom:16px;gap:8px}
+  #enquiry .gform h3 svg{width:18px;height:18px}
+  #enquiry .fld{gap:6px;margin-bottom:13px}
+  #enquiry .fld label{font-size:.68rem}
+  #enquiry .fld label em{font-size:.61rem}
+  #enquiry .fld input,#enquiry .fld select,#enquiry .fld textarea{padding:10px 11px;border-radius:10px;font-size:.74rem}
+  #enquiry .fld textarea{min-height:88px;line-height:1.24}
+  #enquiry .fld .err{font-size:.61rem}
+  #enquiry .gform .cta{font-size:.77rem;padding:10px 19px 10px 11px;margin-top:5px}
+  #enquiry .gform .cta .circ{width:27px;height:27px}
+  #enquiry .gform .cta .circ svg{width:12px;height:12px}
+  #enquiry .gform-note{font-size:.62rem;line-height:1.2;margin-top:11px;gap:6px}
+  #enquiry .gform-note svg{width:11px;height:11px}
+  #enquiry .gcards{gap:10px}
+  #enquiry .gcard{padding:14px 16px;border-radius:14px;gap:12px}
+  #enquiry .gcard .ic{width:35px;height:35px;border-radius:10px}
+  #enquiry .gcard .ic svg{width:18px;height:18px}
+  #enquiry .gcard b{font-size:.77rem;margin-bottom:4px}
+  #enquiry .gcard p{font-size:.69rem;line-height:1.24}
+  #enquiry .gwa{padding:14px 16px;border-radius:14px;gap:11px}
+  #enquiry .gwa svg{width:24px;height:24px}
+  #enquiry .gwa b{font-size:.8rem}
+  #enquiry .gwa span{font-size:.62rem}
+  #faq{padding:32px 0 35px}
+  #faq .faq-aside .sec-head2{margin-bottom:21px}
+  #faq .sec-head2 h2{font-size:clamp(1.48rem,2.72vw,2.08rem);margin-bottom:12px}
+  #faq .sec-head2 p{font-size:.75rem;line-height:1.24}
+  #faq .faq-grid{gap:21px}
+  #faq .faq-help{padding:16px;border-radius:18px}
+  #faq .faq-help .ic{width:37px;height:37px;border-radius:10px;margin-bottom:13px}
+  #faq .faq-help .ic svg{width:19px;height:19px}
+  #faq .faq-help h4{font-size:.96rem;margin-bottom:7px}
+  #faq .faq-help p{font-size:.74rem;line-height:1.28;margin-bottom:18px}
+  #faq .faq-help .cta{font-size:.77rem;padding:10px 19px 10px 11px}
+  #faq .faq-help .cta .circ{width:22px;height:22px;border-width:1.5px}
+  #faq .faq-help .cta .circ svg{width:10px;height:10px}
+  #faq .faq-list{gap:7px}
+  #faq .faq-item{border-radius:13px}
+  #faq .faq-q{padding:10px 12px;font-size:.74rem;gap:8px}
+  #faq .faq-qcat{font-size:.48rem;padding:4px 7px}
+  #faq .faq-ic{width:24px;height:24px}
+  #faq .faq-ic::before{width:10px;height:2px}
+  #faq .faq-ic::after{width:2px;height:10px}
+  #faq .faq-a-in{padding:0 13px 13px;font-size:.75rem;line-height:1.33}
   .git,.faq{padding:40px 0 44px}
-  .git .sec-head2{margin-bottom:24px}
   .frow{grid-template-columns:1fr}
-  .gform{padding:22px 18px;border-radius:20px}
 }
 @media(max-width:460px){
-  .chero h1{font-size:clamp(1.9rem,8vw,2.5rem)}
+  .chero h1{font-size:clamp(1.52rem,6.4vw,2rem)}
   .cv-type{font-size:.62rem;padding:5px 10px}
 }
