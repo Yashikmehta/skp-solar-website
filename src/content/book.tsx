@@ -10,7 +10,9 @@ export const book = {
   title: 'Sun Powered Profit',
   subtitle: 'The Industrial Solar Playbook',
   chapters: 13,
-  cover: '/assets/book-cover-sky.png',
+  cover: '/assets/book-cover-front.png',
+  back: '/assets/book-cover-back.png',
+  spine: '/assets/book-cover-spine.png',
   qr: '/assets/book-qr.png',
   intro:
     'Written by entrepreneur Ravinder Pabla, Sun Powered Profit combines real manufacturing experience with practical insights to help business owners make smarter energy decisions through clarity—not sales pitches.',

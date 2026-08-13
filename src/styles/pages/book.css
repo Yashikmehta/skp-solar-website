@@ -21,7 +21,7 @@ a:hover{color:var(--gold)}
 .book-obj{position:relative;width:286px;height:412px;transform-style:preserve-3d;transform:rotateY(-30deg) rotateX(7deg);will-change:transform;transition:transform .25s ease-out}
 .book-face{position:absolute;top:0;left:0;width:286px;height:412px}
 .book-front{transform:translateZ(22px);border-radius:4px 8px 8px 4px;overflow:hidden;box-shadow:inset -7px 0 16px rgba(0,0,0,.32);background:#0a1430}
-.bf-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bf-bg,.bb-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bf-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,48,.62) 0%,rgba(10,20,48,.10) 26%,rgba(10,20,48,.30) 58%,rgba(7,13,33,.93) 100%)}
 .bf-in{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:space-between;padding:22px 22px 24px}
 .bf-top{display:flex;align-items:center;justify-content:space-between}
@@ -56,8 +56,8 @@ a:hover{color:var(--gold)}
 .book-spin-hint{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.82);font-family:'Sora';font-weight:600;font-size:.72rem;letter-spacing:.02em;padding:7px 13px;border-radius:100px;backdrop-filter:blur(6px);pointer-events:none;z-index:6;transition:opacity .5s ease}
 .book-spin-hint svg{width:14px;height:14px;stroke:var(--gold-bright);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .book-stage.spun .book-spin-hint{opacity:0}
-.book-spine{width:44px;left:0;transform:translateX(-22px) rotateY(-90deg);background:linear-gradient(var(--navy),#0a1430);display:flex;align-items:center;justify-content:center;box-shadow:inset -4px 0 10px rgba(0,0,0,.4)}
-.book-spine span{transform:rotate(90deg);white-space:nowrap;font-family:'Sora';font-weight:700;font-size:.82rem;color:#fff;letter-spacing:.04em}
+.book-spine{width:44px;height:100%;left:0;transform:translateX(-22px) rotateY(-90deg);overflow:hidden;box-shadow:inset -3px 0 8px rgba(0,0,0,.28);background-color:#f3c43b;background-repeat:no-repeat;background-position:center center;background-size:contain}
+.book-spine::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,transparent 10%,transparent 90%,rgba(0,0,0,.05) 100%),linear-gradient(90deg,rgba(0,0,0,.06),transparent 18%,transparent 82%,rgba(0,0,0,.06));pointer-events:none;z-index:1}
 .book-pages{width:44px;left:0;transform:translateX(264px) rotateY(90deg);background:repeating-linear-gradient(to bottom,#fff,#fff 1px,#e4e9f0 2px,#fff 3px)}
 .book-shadow{position:absolute;bottom:18px;left:50%;width:220px;height:26px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 70%);filter:blur(7px);border-radius:50%}
 .book-badge{position:absolute;top:24px;right:24px;background:var(--gold);color:var(--navy);font-family:'Sora';font-weight:800;font-size:.72rem;letter-spacing:.04em;padding:9px 14px;border-radius:100px;box-shadow:0 10px 24px rgba(244,165,42,.4);z-index:5;display:flex;align-items:center;gap:7px}
@@ -241,11 +241,10 @@ a:hover{color:var(--gold)}
   #book .sec-head2 h2{font-size:clamp(1.18rem,2.16vw,1.66rem)}
   #book .sec-head2 p{font-size:.69rem;line-height:1.28}
   #book .book-grid{gap:24px}
-  #book .book-stage{min-height:272px}
-  #book .book-obj{transform:rotateY(-22deg) rotateX(6deg) scale(.62)}
-  #book .book-shadow{bottom:14px;width:176px;height:21px}
-  #book .book-badge{top:19px;right:19px;font-size:.58rem;padding:7px 11px;gap:6px}
-  #book .book-badge svg{width:11px;height:11px}
+  #book .book-stage{min-height:208px}
+  #book .book-obj{transform:rotateY(-22deg) rotateX(6deg) scale(.474)}
+  #book .book-shadow{bottom:11px;width:134px;height:16px}
+  #book .book-badge{display:none}
   #book .book-spin-hint{font-size:.58rem;padding:6px 10px;gap:6px;bottom:5px}
   #book .book-spin-hint svg{width:11px;height:11px}
   #book .book-why{font-size:.74rem;line-height:1.28;margin-bottom:3px}
@@ -286,8 +285,10 @@ a:hover{color:var(--gold)}
   .learn-grid{grid-template-columns:1fr;gap:12px}
   .lc{padding:18px}
   .lc-more{max-height:120px;opacity:1;margin-top:10px}
-  .peek-stage{min-height:340px}
-  .peek-obj{transform:rotateY(-18deg) rotateX(5deg) scale(.8)}
+  .peek-stage{min-height:289px}
+  .peek-glow{width:289px;height:289px}
+  .peek-obj{transform:rotateY(-18deg) rotateX(5deg) scale(.68)}
+  .peek-stage .book-shadow{width:187px;height:22px}
   .pk-steps{grid-template-columns:1fr}
   .peek-close{padding:20px}
   .gcta{padding:46px 0}

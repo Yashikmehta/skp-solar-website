@@ -28,7 +28,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Ravinder Pabla's book for industrial owners: how to turn energy from your most unpredictable cost into a lasting strategic advantage.",
   path: ROUTES.book,
-  image: '/assets/book-cover-sky.png',
+  image: book.cover,
 });
 
 const LEARNINGS = [
@@ -328,14 +328,6 @@ export default function BookPage() {
               stageClassName="peek-stage reveal-x"
               beforeBook={<div className="peek-glow" />}
               className="peek-obj"
-              backQuote={
-                <>
-                  Clarity must come <span className="hl">before capital.</span>
-                </>
-              }
-              backText="Thirteen chapters on treating electricity as a strategic variable — written by an industrialist who delayed the decision for five years and measured what that delay cost."
-              scanTitle="Energy Stability Review"
-              scanSubtitle="Scan to request yours"
               showChrome={false}
               shadowStyle={{ bottom: 64 }}
             >

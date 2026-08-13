@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import { Icon } from '@/components/ui/Icon';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { book } from '@/content/book';
 import { founder } from '@/content/home';
 
 interface Book3DProps {
@@ -19,13 +20,6 @@ interface Book3DProps {
   children?: ReactNode;
   /** Extra class on `.book-obj` — the Book page's "peek" variant uses this. */
   className?: string;
-  /** Back-cover pull quote. Defaults to the homepage/hero wording. */
-  backQuote?: ReactNode;
-  /** Back-cover body copy. */
-  backText?: string;
-  /** Label beside the QR code. */
-  scanTitle?: string;
-  scanSubtitle?: string;
   /** Set false to hide the "Drag to rotate" hint and bestseller badge. */
   showChrome?: boolean;
   /** Inline override for `.book-shadow` position. */
@@ -47,14 +41,6 @@ export function Book3D({
   beforeBook,
   children,
   className,
-  backQuote = (
-    <>
-      Profit favors <span className="hl">clarity.</span>
-    </>
-  ),
-  backText = 'Most businesses track raw materials, machinery and manpower — few track the one cost that quietly rises every year. This is the playbook for industrial leaders who decide to turn energy into a long-term strategic advantage.',
-  scanTitle = 'Get your copy',
-  scanSubtitle = 'Scan to order or download',
   showChrome = true,
   shadowStyle,
 }: Book3DProps = {}) {
@@ -192,81 +178,35 @@ export function Book3D({
         <div className={`book-obj${className ? ` ${className}` : ''}`} ref={objRef}>
           {/* ---- Back cover ---- */}
           <div className="book-face book-back">
-            <div className="bb-in">
-              <div className="bb-kicker">Sun Powered Profit</div>
-              <div className="bb-quote">{backQuote}</div>
-              <div className="bb-text">{backText}</div>
-              <div className="bb-author-row">
-                <div className="bb-photo">
-                  <Image src={founder.portrait} alt={founder.name} width={64} height={64} />
-                </div>
-                <div>
-                  <div className="bb-name">{founder.name}</div>
-                  <div className="bb-role">Founder &amp; MD, SKP Solar World</div>
-                </div>
-              </div>
-              <div className="bb-bottom">
-                <div className="bb-qr">
-                  <Image
-                    src="/assets/book-qr.png"
-                    alt="Scan to order Sun Powered Profit"
-                    width={72}
-                    height={72}
-                  />
-                </div>
-                <div className="bb-scan">
-                  <b>{scanTitle}</b>
-                  <span>{scanSubtitle}</span>
-                </div>
-              </div>
-            </div>
+            <Image
+              className="bb-bg"
+              src={book.back}
+              alt={`${book.title} back cover`}
+              fill
+              sizes="(max-width: 900px) 80vw, 32vw"
+              style={{ objectFit: 'cover' }}
+            />
             <div className="glare" />
           </div>
 
           {/* ---- Spine + page block ---- */}
-          <div className="book-face book-spine">
-            <span>SUN POWERED PROFIT · R. PABLA</span>
-          </div>
+          <div
+            className="book-face book-spine"
+            style={{ backgroundImage: `url(${book.spine})` }}
+            aria-hidden="true"
+          />
           <div className="book-face book-pages" />
 
           {/* ---- Front cover ---- */}
           <div className="book-face book-front">
             <Image
               className="bf-bg"
-              src="/assets/book-cover-sky.png"
-              alt=""
+              src={book.cover}
+              alt={`${book.title} by ${founder.name}`}
               fill
               sizes="(max-width: 900px) 80vw, 32vw"
+              style={{ objectFit: 'cover' }}
             />
-            <div className="bf-shade" />
-            <div className="bf-in">
-              <div className="bf-top">
-                <div className="bf-emblem">S</div>
-                <div className="bf-kicker">
-                  The Industrial
-                  <br />
-                  Solar Playbook
-                </div>
-              </div>
-              <div className="bf-mid">
-                <div className="bf-rule" />
-                <div className="bf-title">
-                  Sun
-                  <br />
-                  Powered
-                  <br />
-                  Profit
-                </div>
-                <div className="bf-sub">
-                  Turn energy from your most unpredictable cost into a lasting strategic
-                  advantage.
-                </div>
-              </div>
-              <div className="bf-author">
-                <div className="nm">{founder.name}</div>
-                <div className="rl">Industrial Entrepreneur</div>
-              </div>
-            </div>
             <div className="glare" />
           </div>
         </div>
