@@ -14,7 +14,6 @@ import {
   book,
   bookTrustPoints,
   learnCards,
-  peekCards,
   storyCards,
   storyMilestones,
 } from '@/content/book';
@@ -248,9 +247,6 @@ export default function BookPage() {
 
               <CtaRow className="reveal dly3">
                 <Cta href="#getcopy">Get Your Copy</Cta>
-                <CtaGhost href="#inside" icon="document">
-                  Download Sample Chapter
-                </CtaGhost>
               </CtaRow>
             </div>
           </div>
@@ -300,106 +296,6 @@ export default function BookPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- 03 · A glimpse inside ---------- */}
-      <section className="peek" id="inside">
-        <AmbientOrb
-          tone="green"
-          parallax={-0.05}
-          style={{ width: 360, height: 360, top: 0, left: -90 }}
-        />
-        <div className="wrap">
-          <SectionHeading
-            className="reveal"
-            kicker="A Glimpse Inside the Book"
-            title={
-              <>
-                Discover the Thinking Behind <Hl>Smarter Energy Decisions</Hl>
-              </>
-            }
-            body="A few carefully chosen pages. Enough to show how the book thinks — not enough to replace reading it."
-          />
-
-          <div className="peek-grid">
-            <Book3D
-              stageClassName="peek-stage reveal-x"
-              beforeBook={<div className="peek-glow" />}
-              className="peek-obj"
-              showChrome={false}
-              shadowStyle={{ bottom: 64 }}
-            >
-              <div className="peek-locked">
-                <Icon name="lock" /> Full chapters available in the printed edition
-              </div>
-            </Book3D>
-
-            <div className="peek-list">
-              {peekCards.map((card, index) => (
-                <div
-                  className={`pk${card.variant ? ` ${card.variant}` : ''} reveal${
-                    index > 0 ? ` dly${index}` : ''
-                  }`}
-                  key={card.page + card.type}
-                >
-                  <div className="pk-page">{card.page}</div>
-                  <div className="pk-type">
-                    <Icon name="book" /> {card.type}
-                  </div>
-
-                  {card.quote ? <q>{card.quote}</q> : null}
-                  {card.by ? <div className="by">{card.by}</div> : null}
-                  {card.title ? <h4>{card.title}</h4> : null}
-                  {card.body ? <p>{card.body}</p> : null}
-
-                  {card.steps ? (
-                    <div className="pk-steps">
-                      {card.steps.map((step) => (
-                        <div
-                          className={`pk-step${step.locked ? ' locked' : ''}`}
-                          key={step.label}
-                        >
-                          <b>{step.label}</b>
-                          <span>{step.body}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
-
-                  {card.numbers ? (
-                    <div className="pk-nums">
-                      {card.numbers.map((number) => (
-                        <div className="pk-num" key={number.label}>
-                          <div className="v">
-                            {number.prefix}
-                            <Counter to={number.count} suffix={number.suffix} />
-                          </div>
-                          <div className="k">{number.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="peek-close reveal dly2">
-            <div>
-              <h3>Want to explore the complete insights?</h3>
-              <p>
-                The full framework, the vendor checklist and the complete 500 kW numbers live in
-                the book — and in a one-to-one review of your own rooftop.
-              </p>
-            </div>
-            <CtaRow>
-              <Cta href="#getcopy">Get Your Copy</Cta>
-              <CtaGhost href="#getcopy" icon="calculator">
-                Book an Energy Stability Review
-              </CtaGhost>
-            </CtaRow>
           </div>
         </div>
       </section>

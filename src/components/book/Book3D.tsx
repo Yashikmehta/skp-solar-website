@@ -196,6 +196,8 @@ export function Book3D({
             aria-hidden="true"
           />
           <div className="book-face book-pages" />
+          <div className="book-face book-top" aria-hidden="true" />
+          <div className="book-face book-bottom" aria-hidden="true" />
 
           {/* ---- Front cover ---- */}
           <div className="book-face book-front">
