@@ -4,7 +4,6 @@ import Link from 'next/link';
 import '@/styles/pages/book.css';
 
 import { Book3D } from '@/components/book/Book3D';
-import { BookCover } from '@/components/book/BookCover';
 import { AmbientOrb } from '@/components/ui/AmbientOrb';
 import { Cta, CtaGhost, CtaRow, FButton } from '@/components/ui/Button';
 import { Counter } from '@/components/ui/Counter';
@@ -155,13 +154,7 @@ export default function BookPage() {
                 <div className="ph-tint" />
                 <div className="story-namecard">
                   <b>{founder.name}</b>
-                  <span>Author · Founder &amp; Managing Director, SKP Solar World</span>
-                </div>
-                <div className="story-statcard">
-                  <div className="v">
-                    30<span style={{ fontSize: '1rem' }}>+</span>
-                  </div>
-                  <div className="k">Years on the shop floor</div>
+                  <span>Author &amp; Director</span>
                 </div>
               </div>
 
@@ -305,34 +298,7 @@ export default function BookPage() {
         <div className="gcta-orb1" data-parallax="0.04" />
         <div className="gcta-orb2" data-parallax="-0.04" />
         <div className="wrap">
-          <SectionHeading
-            center
-            className="reveal"
-            kicker="Get Your Copy & Take the Next Step"
-            title={
-              <>
-                Knowledge Creates Confidence.{' '}
-                <span style={{ color: 'var(--gold-bright)' }}>Action Creates Results.</span>
-              </>
-            }
-            body="Read the book, then put it to work on your own rooftop. Both start with a conversation, not a quotation."
-          />
-
           <div className="gcta-grid">
-            <div className="gcta-bookcol reveal-x">
-              <BookCover />
-              <p className="gcta-bookdesc">
-                13 chapters, one decision framework and a real 500 kW case study — written for
-                owners evaluating a crore-level energy decision.
-              </p>
-              <div className="gcta-format">
-                <span>Print edition</span>
-                <span>Digital copy</span>
-                <span>No obligation</span>
-              </div>
-              <Cta href={ROUTES.contact}>Get Your Copy</Cta>
-            </div>
-
             <div className="gcta-panel reveal dly1">
               <div className="who">
                 <Image

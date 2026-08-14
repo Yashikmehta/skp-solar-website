@@ -1,32 +1,34 @@
 import { NextResponse } from 'next/server';
 import { hasErrors, validateLead, type LeadPayload } from '@/lib/leads';
+import { getSupabaseAdmin } from '@/lib/supabase-admin';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-/**
- * Lead intake endpoint.
- *
- * This replaces the `localStorage['skp_enquiries']` design stub called out in
- * HANDOFF.md §5. It validates server-side and then hands the lead to whatever
- * `deliverLead` is wired to.
- *
- * ▸ TO GO LIVE: implement `deliverLead` below — email via Resend/SendGrid, a
- *   CRM webhook, or a Sanity document. Until then it logs the lead and returns
- *   success so the approved success state still renders end to end.
- */
-async function deliverLead(lead: LeadPayload): Promise<void> {
-  const endpoint = process.env.LEAD_WEBHOOK_URL;
+async function saveLeadToSupabase(lead: LeadPayload): Promise<void> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return;
 
-  if (!endpoint) {
-    // eslint-disable-next-line no-console
-    console.info('[leads] no LEAD_WEBHOOK_URL configured — lead not delivered', {
-      source: lead.source,
-      city: lead.city,
-      sector: lead.sector,
-    });
-    return;
+  const { error } = await supabase.from('leads').insert({
+    name: lead.name,
+    company: lead.company ?? null,
+    mobile: lead.mobile,
+    email: lead.email,
+    city: lead.city,
+    sector: lead.sector,
+    message: lead.message ?? null,
+    source: lead.source,
+    estimate: lead.estimate ?? null,
+  });
+
+  if (error) {
+    throw new Error(`Supabase insert failed: ${error.message}`);
   }
+}
+
+async function forwardLeadToWebhook(lead: LeadPayload): Promise<void> {
+  const endpoint = process.env.LEAD_WEBHOOK_URL;
+  if (!endpoint) return;
 
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -42,6 +44,26 @@ async function deliverLead(lead: LeadPayload): Promise<void> {
   if (!response.ok) {
     throw new Error(`Lead webhook responded ${response.status}`);
   }
+}
+
+async function deliverLead(lead: LeadPayload): Promise<void> {
+  const hasSupabase = Boolean(
+    process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY,
+  );
+  const hasWebhook = Boolean(process.env.LEAD_WEBHOOK_URL);
+
+  if (!hasSupabase && !hasWebhook) {
+    // eslint-disable-next-line no-console
+    console.info('[leads] no delivery configured — lead logged only', {
+      source: lead.source,
+      city: lead.city,
+      sector: lead.sector,
+    });
+    return;
+  }
+
+  if (hasSupabase) await saveLeadToSupabase(lead);
+  if (hasWebhook) await forwardLeadToWebhook(lead);
 }
 
 export async function POST(request: Request) {

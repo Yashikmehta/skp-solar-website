@@ -43,12 +43,6 @@ export default function CalculatorPage() {
         <div className="wrap">
           <div className="hero-grid">
             <div className="hero-copy">
-              <div className="hero-badge reveal">
-                <span className="t">
-                  <Icon name="bolt" />
-                </span>
-                Free Solar ROI Calculator · <b>60-second result</b>
-              </div>
               <h1 className="reveal dly1">
                 Calculate Your Solar Savings in <Hl>Less Than 60 Seconds</Hl>
               </h1>
@@ -272,7 +266,6 @@ export default function CalculatorPage() {
                 Engineering-first solar, <Hl>start to finish</Hl>
               </>
             }
-            body="We powered our own factory roof before anyone else's. That's the standard behind every SKP installation."
           />
           <div className="trust-grid">
             {calculatorTrustCards.map((card, index) => (

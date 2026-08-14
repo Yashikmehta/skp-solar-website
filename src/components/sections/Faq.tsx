@@ -81,9 +81,7 @@ export function Faq({
               const open = openIndex === index;
               return (
                 <div
-                  className={`faq-item reveal ${index % 2 === 0 ? 'dly1' : 'dly2'}${
-                    open ? ' open' : ''
-                  }`}
+                  className={`faq-item${open ? ' open' : ''}`}
                   key={item.question}
                 >
                   <button
