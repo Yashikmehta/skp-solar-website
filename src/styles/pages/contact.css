@@ -117,21 +117,21 @@ a:hover{color:var(--gold)}
   #enquiry .sec-head2{margin-bottom:19px}
   #enquiry .sec-head2 h2{font-size:clamp(1.48rem,2.72vw,2.08rem);margin-bottom:12px}
   #enquiry .sec-head2 p{font-size:.75rem;line-height:1.24}
-  #enquiry .git-grid{gap:16px}
-  #enquiry .gform{padding:18px 14px;border-radius:16px}
-  #enquiry .gform h3{font-size:.9rem;margin-bottom:16px;gap:8px}
-  #enquiry .gform h3 svg{width:18px;height:18px}
-  #enquiry .fld{gap:6px;margin-bottom:13px}
-  #enquiry .fld label{font-size:.68rem}
-  #enquiry .fld label em{font-size:.61rem}
-  #enquiry .fld input,#enquiry .fld select,#enquiry .fld textarea{padding:10px 11px;border-radius:10px;font-size:.74rem}
-  #enquiry .fld textarea{min-height:88px;line-height:1.24}
-  #enquiry .fld .err{font-size:.61rem}
-  #enquiry .gform .cta{font-size:.77rem;padding:10px 19px 10px 11px;margin-top:5px}
-  #enquiry .gform .cta .circ{width:27px;height:27px}
-  #enquiry .gform .cta .circ svg{width:12px;height:12px}
-  #enquiry .gform-note{font-size:.62rem;line-height:1.2;margin-top:11px;gap:6px}
-  #enquiry .gform-note svg{width:11px;height:11px}
+  #enquiry .git-grid{gap:14px}
+  #enquiry .gform{padding:16px 13px;border-radius:14px}
+  #enquiry .gform h3{font-size:.81rem;margin-bottom:14px;gap:7px}
+  #enquiry .gform h3 svg{width:16px;height:16px}
+  #enquiry .fld{gap:5px;margin-bottom:12px}
+  #enquiry .fld label{font-size:.61rem}
+  #enquiry .fld label em{font-size:.55rem}
+  #enquiry .fld input,#enquiry .fld select,#enquiry .fld textarea{padding:9px 10px;border-radius:9px;font-size:.67rem}
+  #enquiry .fld textarea{min-height:79px;line-height:1.24}
+  #enquiry .fld .err{font-size:.55rem}
+  #enquiry .gform .cta{font-size:.69rem;padding:9px 17px 9px 10px;margin-top:5px}
+  #enquiry .gform .cta .circ{width:24px;height:24px}
+  #enquiry .gform .cta .circ svg{width:11px;height:11px}
+  #enquiry .gform-note{font-size:.56rem;line-height:1.2;margin-top:10px;gap:5px}
+  #enquiry .gform-note svg{width:10px;height:10px}
   #enquiry .gcards{gap:10px}
   #enquiry .gcard{padding:14px 16px;border-radius:14px;gap:12px}
   #enquiry .gcard .ic{width:35px;height:35px;border-radius:10px}

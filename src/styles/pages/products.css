@@ -219,7 +219,8 @@ a:hover{color:var(--gold)}
   .phero-chip .k{font-size:.61rem}
   .pcats-row{justify-content:flex-start;gap:24px;padding-top:14px}
   .pcats-row button{padding-bottom:13px}
-  .pmod,.pinv,.popt,.pflex,.pcmp,.pdl{padding:36px 0 42px}
+  .pmod,.pinv,.popt,.pflex,.pdl{padding:36px 0 42px}
+  .pcmp{padding:29px 0 34px}
   .pi-visual{width:80%}
   .pi-chip{padding:10px 14px;bottom:-14px;right:14px}
   .pi-chip .v{font-size:.96rem}
@@ -228,10 +229,19 @@ a:hover{color:var(--gold)}
   .ppanel .sec-kicker{margin-bottom:12px}
   .ppanel .sec-head2 h2{margin-bottom:13px}
   .ppanel .sec-head2 p{font-size:.85rem;line-height:1.45}
-  .pcmp .sec-head2{margin-bottom:23px}
-  .pcmp .sec-kicker{margin-bottom:12px}
-  .pcmp .sec-head2 h2{margin-bottom:13px}
-  .pcmp .sec-head2 p{font-size:.85rem;line-height:1.45}
+  .pcmp .sec-head2{margin-bottom:18px}
+  .pcmp .sec-kicker{margin-bottom:10px}
+  .pcmp .sec-head2 h2{margin-bottom:10px;font-size:1.1rem}
+  .pcmp .sec-head2 p{font-size:.76rem;line-height:1.4}
+  .pcmp .cmp-swipe-hint{margin:0 0 8px;font-size:.7rem}
+  .pcmp .cmp-scroll{border-radius:16px}
+  .pcmp .cmp-table th,.pcmp .cmp-table td{padding:12px 16px;font-size:.7rem}
+  .pcmp .cmp-table thead th{padding:14px 16px;font-size:.78rem}
+  .pcmp .cmp-table thead th small{font-size:.56rem;margin-top:3px}
+  .pcmp .cmp-table td:first-child{font-size:.66rem}
+  .pcmp .cmp-flag{font-size:.5rem;padding:3px 7px;margin-left:6px}
+  .pcmp .dots i{width:7px;height:7px}
+  .pcmp .cmp-note{margin-top:11px;font-size:.7rem;line-height:1.4}
   .cmp-swipe-hint{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:.78rem;font-weight:600;color:var(--green);margin:0 0 10px;animation:cmpHintNudge 1.6s ease-in-out infinite}
   .pm-grid{grid-template-columns:1fr;gap:14px}
   .pm-card:last-child{grid-column:auto}
