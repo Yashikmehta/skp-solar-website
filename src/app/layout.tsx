@@ -7,12 +7,7 @@ import '@/styles/skp-system.css';
 import '@/styles/skp-system-gaps.css';
 import '@/styles/tailwind.css';
 
-import { Footer } from '@/components/layout/Footer';
-import { Header } from '@/components/layout/Header';
-import { SiteMotion } from '@/components/layout/SiteMotion';
-import { SkipLink } from '@/components/layout/SkipLink';
-import { WhatsAppFab } from '@/components/layout/WhatsAppFab';
-import { organizationJsonLd, SITE_URL } from '@/lib/seo';
+import { SITE_URL } from '@/lib/seo';
 import { siteSettings } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -33,21 +28,14 @@ export const viewport: Viewport = {
   themeColor: '#0e1a3c',
 };
 
+/**
+ * Document shell only. The public site's header and footer live in
+ * `(site)/layout.tsx` so that `/admin` can render without them.
+ */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN">
-      <body>
-        <SkipLink />
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <WhatsAppFab />
-        <SiteMotion />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
-        />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

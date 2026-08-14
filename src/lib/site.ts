@@ -12,9 +12,14 @@ import { ROUTES } from './routes';
  * `siteSettings` singleton (see `src/content/schemas.ts`) and nothing else in
  * the codebase has to change — components already read from here.
  *
- * ⚠️  PLACEHOLDERS (HANDOFF.md §8 — "still needed from the client"):
- *     phone, whatsapp, email and the office address are all placeholder
- *     values carried over from the design. Replace before launch.
+ * ✅ CONFIRMED BY THE CLIENT: phone and email below are the live business
+ *    details. Every tel:, mailto: and wa.me link on the site derives from
+ *    them — change them here and nowhere else.
+ *
+ * ⚠️  STILL UNCONFIRMED (HANDOFF.md §8): the office address is carried over
+ *    from the design. It shows on the Contact page and in the LocalBusiness
+ *    JSON-LD. `whatsapp` currently mirrors the business phone — see the note
+ *    on that field.
  * ============================================================================
  */
 
@@ -44,10 +49,12 @@ export const siteSettings: SiteSettings = {
   name: 'SKP Solar World',
   legalName: 'SKP Solar World',
   tagline: 'Industrial & Rooftop Solar in Punjab',
-  phoneDisplay: '+91 90000 00000',
-  phone: '+919000000000',
-  whatsapp: '919000000000',
-  email: 'hello@skpsolarworld.com',
+  phoneDisplay: '+91 76969 25523',
+  phone: '+917696925523',
+  /* ⚠️ AWAITING CONFIRMATION: mirrors the business phone. If SKP uses a
+     separate WhatsApp Business number, change this one field. */
+  whatsapp: '917696925523',
+  email: 'sales@skpsolarworld.com',
   addressLines: ['SKP Solar World, Industrial Area,', 'Jalandhar, Punjab 144004'],
   postalCode: '144004',
   locality: 'Jalandhar',

@@ -1,49 +1,25 @@
 import { NextResponse } from 'next/server';
-import { hasErrors, validateLead, type LeadPayload } from '@/lib/leads';
+import { sendLeadNotification } from '@/lib/notify';
+import { saveLead } from '@/lib/supabase';
+import { hasErrors, sanitizeEstimate, validateLead, type LeadPayload } from '@/lib/leads';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 /**
- * Lead intake endpoint.
+ * Lead intake endpoint — used by both the Contact enquiry form and the Solar
+ * Calculator report form.
  *
- * This replaces the `localStorage['skp_enquiries']` design stub called out in
- * HANDOFF.md §5. It validates server-side and then hands the lead to whatever
- * `deliverLead` is wired to.
- *
- * ▸ TO GO LIVE: implement `deliverLead` below — email via Resend/SendGrid, a
- *   CRM webhook, or a Sanity document. Until then it logs the lead and returns
- *   success so the approved success state still renders end to end.
+ * Order of operations matters:
+ *   1. validate server-side (never trust the browser)
+ *   2. WRITE TO SUPABASE — the permanent record. If this fails the request
+ *      fails, so the visitor is never shown a success state for a lead that
+ *      was not stored.
+ *   3. EMAIL sales@skpsolarworld.com — notification only. The lead is already
+ *      safe in the database by this point, so a mail outage is logged loudly
+ *      but does not fail the request and does not push the customer into
+ *      re-submitting (which would duplicate the stored row).
  */
-async function deliverLead(lead: LeadPayload): Promise<void> {
-  const endpoint = process.env.LEAD_WEBHOOK_URL;
-
-  if (!endpoint) {
-    // eslint-disable-next-line no-console
-    console.info('[leads] no LEAD_WEBHOOK_URL configured — lead not delivered', {
-      source: lead.source,
-      city: lead.city,
-      sector: lead.sector,
-    });
-    return;
-  }
-
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(process.env.LEAD_WEBHOOK_TOKEN
-        ? { Authorization: `Bearer ${process.env.LEAD_WEBHOOK_TOKEN}` }
-        : {}),
-    },
-    body: JSON.stringify({ ...lead, receivedAt: new Date().toISOString() }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Lead webhook responded ${response.status}`);
-  }
-}
-
 export async function POST(request: Request) {
   let body: Partial<LeadPayload>;
 
@@ -67,17 +43,34 @@ export async function POST(request: Request) {
     sector: body.sector!,
     message: body.message?.trim() || undefined,
     source: body.source === 'Calculator Page' ? 'Calculator Page' : 'Contact Page',
-    estimate: body.estimate,
+    estimate: sanitizeEstimate(body.estimate),
   };
 
+  const submittedAt = new Date();
+
+  /* 1 · Permanent record. A failure here is fatal to the request. */
   try {
-    await deliverLead(lead);
+    await saveLead(lead);
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('[leads] delivery failed', error);
+    console.error('[leads] could not save lead to Supabase', error);
     return NextResponse.json(
-      { ok: false, message: 'We could not send your enquiry. Please call or WhatsApp us.' },
+      {
+        ok: false,
+        message: 'We could not submit your enquiry. Please call or WhatsApp us.',
+      },
       { status: 502 },
+    );
+  }
+
+  /* 2 · Notification. Non-fatal — the lead is already stored. */
+  try {
+    await sendLeadNotification(lead, submittedAt);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(
+      '[leads] lead SAVED but notification email FAILED — recover it from the Supabase `leads` table',
+      error,
     );
   }
 

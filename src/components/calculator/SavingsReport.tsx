@@ -11,7 +11,7 @@ import {
 } from '@/lib/calculator';
 import { digitsOf, SECTORS, type LeadPayload } from '@/lib/leads';
 import { ANCHORS } from '@/lib/routes';
-import { telHref, waHref } from '@/lib/site';
+import { siteSettings, telHref, waHref } from '@/lib/site';
 
 /** Sector → the noun used in the report intro, from the approved copy. */
 const SECTOR_WORD: Record<string, string> = {
@@ -97,9 +97,10 @@ interface FormErrors {
  *
  * Validation rules, error copy, the loading state on the submit button, the
  * form → report transition and the scroll-back are all ported from the
- * approved page. The localStorage stub is replaced by `POST /api/leads`
- * (HANDOFF.md §5), but the report renders regardless of delivery so the user
- * always sees their numbers.
+ * approved page. The localStorage stub is replaced by `POST /api/leads`, which
+ * stores the lead in Supabase and notifies sales. The report is revealed only
+ * after that succeeds — an enquiry must never be silently dropped behind a
+ * success state.
  */
 export function SavingsReport() {
   const reduced = usePrefersReducedMotion();
@@ -112,6 +113,8 @@ export function SavingsReport() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
+  /** Set when the lead could not be stored — the report stays hidden. */
+  const [submitError, setSubmitError] = useState('');
   const [result, setResult] = useState<ReportResult | null>(null);
   const [submitted, setSubmitted] = useState<{ name: string; sector: string } | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -128,6 +131,7 @@ export function SavingsReport() {
 
   const set = (key: keyof typeof values) => (value: string) => {
     setValues((current) => ({ ...current, [key]: value }));
+    setSubmitError('');
     setErrors((current) => {
       if (!current[key as keyof FormErrors]) return current;
       const next = { ...current };
@@ -158,7 +162,11 @@ export function SavingsReport() {
     const bill = Number(digitsOf(values.bill));
     const computed = calculateReport(bill);
     setLoading(true);
+    setSubmitError('');
 
+    /* The full calculator context travels with the lead: the visitor's input,
+       the sizing it produced, and every headline figure the report will show
+       them — so sales sees exactly the numbers the customer saw. */
     const payload: Partial<LeadPayload> = {
       name: values.name.trim(),
       mobile: `+91${digitsOf(values.phone)}`,
@@ -167,29 +175,62 @@ export function SavingsReport() {
       sector: values.sector,
       source: 'Calculator Page',
       estimate: {
+        monthlyBill: bill,
         systemKw: computed.sizeKw,
-        monthlySavings: Math.round(computed.monthlySavings),
-        paybackYears: Number(computed.paybackYears.toFixed(1)),
+        monthlyGeneration: computed.monthlyGeneration,
+        monthlySavings: computed.monthlySavings,
+        annualSavings: computed.annualSavings,
+        savings25: computed.savings25,
+        systemCost: computed.cost,
+        paybackYears: computed.paybackYears,
+        co2Tonnes: computed.co2Tonnes,
+        trees: computed.trees,
+        billOffset: computed.offset,
       },
     };
 
-    /* The report is the user's; never block it on delivery. */
-    void fetch('/api/leads', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }).catch(() => undefined);
+    /* The report is only revealed once the lead is safely stored — an enquiry
+       must never be silently dropped. The 650 ms floor keeps the approved
+       loading animation from flashing on a fast connection. */
+    const minimumDelay = new Promise((resolve) => window.setTimeout(resolve, 650));
 
-    window.setTimeout(() => {
-      setLoading(false);
-      setResult(computed);
-      setSubmitted({ name: values.name.trim(), sector: values.sector });
-      const anchor = document.getElementById('calculator');
-      if (anchor) {
-        const top = anchor.getBoundingClientRect().top + window.scrollY - 70;
-        window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
+    try {
+      const [response] = await Promise.all([
+        fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }),
+        minimumDelay,
+      ]);
+
+      const data = (await response.json().catch(() => ({ ok: false }))) as {
+        ok?: boolean;
+        message?: string;
+      };
+
+      if (!response.ok || !data.ok) {
+        setLoading(false);
+        setSubmitError(
+          data.message ?? 'We could not submit your enquiry. Please call or WhatsApp us.',
+        );
+        return;
       }
-    }, 650);
+    } catch {
+      await minimumDelay;
+      setLoading(false);
+      setSubmitError('We could not submit your enquiry. Please call or WhatsApp us.');
+      return;
+    }
+
+    setLoading(false);
+    setResult(computed);
+    setSubmitted({ name: values.name.trim(), sector: values.sector });
+    const anchor = document.getElementById('calculator');
+    if (anchor) {
+      const top = anchor.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
+    }
   }
 
   function recalculate() {
@@ -358,6 +399,24 @@ export function SavingsReport() {
                 <span className="lbl">Calculate My Savings</span>
               </button>
             </div>
+
+            {submitError ? (
+              <p
+                role="alert"
+                style={{
+                  margin: '12px 0 0',
+                  color: '#ff9a9a',
+                  fontSize: '.82rem',
+                  lineHeight: 1.5,
+                  textAlign: 'center',
+                }}
+              >
+                {submitError}{' '}
+                <a href={telHref} style={{ color: 'inherit', textDecoration: 'underline' }}>
+                  {siteSettings.phoneDisplay}
+                </a>
+              </p>
+            ) : null}
 
             <div className="cf-secure">
               <Icon name="shield" />
