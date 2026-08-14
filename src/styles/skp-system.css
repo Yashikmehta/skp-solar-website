@@ -205,6 +205,12 @@ header.stuck{border-color:var(--line);box-shadow:0 8px 30px rgba(14,26,60,.07);b
   .fbtn{flex:1 1 100%;justify-content:center;padding:10px 18px;font-size:.82rem}
   .fcta-stats{grid-template-columns:1fr 1fr;gap:24px 16px;padding-top:24px}
   .logo img{height:40px}
+  /* Shared 3D book — 25% smaller on mobile (Book3D on home + /the-book) */
+  .book-stage .book-float,.peek-stage .book-float{
+    transform:scale(.75);
+    transform-style:preserve-3d;
+    animation:bookfloat-mobile 6s ease-in-out infinite;
+  }
 }
 
 @media(max-width:680px){
@@ -228,6 +234,13 @@ header.stuck{border-color:var(--line);box-shadow:0 8px 30px rgba(14,26,60,.07);b
 
 /* ---------- FAQ / motion keyframes ---------- */
 @keyframes faqOpen{from{transform:translateY(-8px)}to{transform:translateY(0)}}
+@keyframes bookfloat-mobile{0%,100%{transform:scale(.75) translateY(0)}50%{transform:scale(.75) translateY(-12px)}}
+
+@media(prefers-reduced-motion:reduce){
+  @media(max-width:760px){
+    .book-stage .book-float,.peek-stage .book-float{animation:none;transform:scale(.75)}
+  }
+}
 
 /* ---------- SITE FOOTER ---------- */
 .ft{background:linear-gradient(160deg,#0a1430 0%,var(--navy) 52%,#10243f 100%);color:#fff;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,.08)}

@@ -227,7 +227,6 @@ select.cf-input option{color:#0e1a3c}
 .how>.wrap{position:relative;z-index:2}
 .how .sec-head2{margin-bottom:22px}
 .how-track{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}
-.how-track::before{content:'';position:absolute;top:25px;left:10%;right:10%;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px);z-index:0}
 .how-step{position:relative;z-index:1;text-align:center;padding:0 6px}
 .how-num{width:50px;height:50px;border-radius:50%;margin:0 auto 12px;background:#fff;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:800;font-size:1.35rem;color:var(--navy);box-shadow:0 8px 22px rgba(14,26,60,.08);transition:transform .4s cubic-bezier(.34,1.4,.5,1),border-color .4s,box-shadow .4s;position:relative}
 .how-num::after{content:'';position:absolute;inset:-1.5px;border-radius:50%;background:linear-gradient(140deg,var(--navy),var(--green));opacity:0;transition:opacity .4s;z-index:-1}
@@ -239,10 +238,11 @@ select.cf-input option{color:#0e1a3c}
 .how-step p{font-size:.84rem;color:#5b6376;line-height:1.5}
 @media(max-width:860px){
   .how-track{grid-template-columns:1fr;gap:0;max-width:440px;margin:0 auto}
-  .how-track::before{left:31px;right:auto;top:10%;bottom:10%;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--line) 0 8px,transparent 8px 16px)}
-  .how-step{display:grid;grid-template-columns:50px 1fr;gap:16px;text-align:left;align-items:start;padding:0 0 20px}
-  .how-num{margin:0}
-  .how-ic{margin:0 0 10px}
+  .how-step{display:grid;grid-template-columns:50px 1fr;grid-template-rows:auto auto;column-gap:16px;row-gap:5px;text-align:left;align-items:start;padding:0 0 16px}
+  .how-num{grid-column:1;grid-row:1 / -1;align-self:start;margin:0}
+  .how-ic{grid-column:2;grid-row:1;justify-self:start;margin:0;align-self:start}
+  .how-step h4{grid-column:2;grid-row:1;margin:0 0 0 46px;line-height:1.3;padding-top:7px}
+  .how-step p{grid-column:2;grid-row:2;margin:4px 0 0;line-height:1.45}
   .how-step:last-child{padding-bottom:0}
 }
 /* ===== Trust cards ===== */
@@ -261,7 +261,6 @@ select.cf-input option{color:#0e1a3c}
   .trust-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:560px){
-  .trust-grid{grid-template-columns:1fr}
   .how{padding:48px 0 52px}
   .trust{padding:31px 0 33px}
 }
@@ -281,68 +280,83 @@ select.cf-input option{color:#0e1a3c}
    =================================================================== */
 @media(max-width:640px){
   /* Consistent, compact section rhythm */
-  .whyc{padding:32px 0 34px}
-  .calc{padding:34px 0 38px}
-  .how{padding:32px 0 34px}
+  .whyc{padding:26px 0 27px}
+  .calc{padding:27px 0 30px}
+  .how{padding:26px 0 27px}
   .trust{padding:32px 0 34px}
-  .whyc .sec-head2,.calc .sec-head2,.how .sec-head2,.trust .sec-head2{margin-bottom:20px}
+  .trust .sec-head2{margin-bottom:20px}
+  .whyc .sec-head2{margin-bottom:14px}
+  .whyc .sec-head2 h2{font-size:1.32rem;margin-bottom:10px;line-height:1.12}
+  .calc .sec-head2{margin-bottom:14px}
+  .calc .sec-head2 h2{font-size:1.38rem;margin-bottom:10px;line-height:1.12}
+  .calc .sec-head2 p{font-size:.88rem;line-height:1.45}
+  .how .sec-head2{margin-bottom:14px}
+  .how .sec-head2 h2{margin-bottom:10px;font-size:1.28rem;line-height:1.14}
   /* ---- Hero ---- */
-  .hero{padding:6px 0 4px}
-  .hero-grid{gap:26px}
-  .hero-badge{font-size:.72rem;padding:7px 13px 7px 8px}
-  .hero h1{font-size:1.72rem;line-height:1.14;margin-bottom:12px}
-  .hero .sub{font-size:.98rem;line-height:1.55;margin-bottom:20px;max-width:none}
+  .hero{padding:4px 0 8px;overflow:visible}
+  .hero-grid{gap:20px}
+  .hero-badge{font-size:.68rem;padding:6px 11px 6px 7px;margin-bottom:6px}
+  .hero-badge .t{width:20px;height:20px}
+  .hero-badge .t svg{width:11px;height:11px}
+  .hero h1{font-size:1.58rem;line-height:1.12;margin-bottom:8px}
+  .hero .sub{font-size:.9rem;line-height:1.48;margin-bottom:14px;max-width:none}
   /* Full-width stacked CTAs = bigger tap targets, clearer primary */
-  .hero-cta-row{flex-direction:column;gap:10px;width:100%}
-  .hero-cta-row .cta,.hero-cta-row .cta-ghost{height:50px;width:100%;justify-content:center;font-size:.92rem}
-  .hero-cta-row .cta{padding-left:14px;padding-right:22px}
-  .hero-cta-row .cta .circ{width:28px;height:28px}
-  .hero-cta-row .cta .circ svg{width:13px;height:13px}
-  .hero-cta-row .cta-ghost svg{width:17px;height:17px}
-  .hero-trust{gap:8px 18px;margin-top:16px}
-  .hero-trust span{font-size:.82rem}
+  .hero-cta-row{flex-direction:column;gap:8px;width:100%}
+  .hero-cta-row .cta{display:none}
+  .hero-cta-row .cta,.hero-cta-row .cta-ghost{height:42px;width:100%;justify-content:center;font-size:.86rem}
+  .hero-cta-row .cta{padding-left:12px;padding-right:18px}
+  .hero-cta-row .cta .circ{width:24px;height:24px}
+  .hero-cta-row .cta .circ svg{width:12px;height:12px}
+  .hero-cta-row .cta-ghost svg{width:15px;height:15px}
+  .hero-trust{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 6px;margin-top:10px}
+  .hero-trust span{flex-direction:column;align-items:center;gap:4px;text-align:center;font-size:.64rem;line-height:1.22}
+  .hero-trust svg{width:12px;height:12px}
   /* Dashboard illustration — pull floating cards inward, scale down */
-  .dash{width:min(360px,84vw);margin:8px auto 6px}
-  .dash-main{padding:20px;border-radius:22px}
-  .dash-head{margin-bottom:14px}
-  .dash-big{margin-bottom:12px}
-  .dash-big .v{font-size:2rem}
-  .dash-big .v .u{font-size:1.15rem}
-  .dash-bars{height:80px}
-  .dash-card{padding:11px 13px;border-radius:15px}
-  .dash-card .ic{width:34px;height:34px}
-  .dash-card .ic svg{width:19px;height:19px}
-  .dash-card .tx .v{font-size:1rem}
-  .dash-bill{top:-16px;left:-6px}
-  .dash-sun{bottom:56px;right:-8px}
-  .dash-green{bottom:-16px;left:-6px}
-  .dash-roof{top:8px;right:-8px;width:70px;height:70px;border-radius:16px}
-  .dash-roof svg{width:38px;height:38px}
+  .dash-col{padding-bottom:0}
+  .dash{width:min(300px,76vw);margin:0 auto;animation:none}
+  .dash-main{padding:16px;border-radius:20px}
+  .dash-head{margin-bottom:10px}
+  .dash-big{margin-bottom:8px}
+  .dash-big .v{font-size:1.75rem}
+  .dash-big .v .u{font-size:1rem}
+  .dash-bars{height:64px;gap:6px}
+  .dash-mini{gap:8px;margin-top:12px}
+  .dash-card{padding:9px 11px;border-radius:13px}
+  .dash-card .ic{width:30px;height:30px}
+  .dash-card .ic svg{width:17px;height:17px}
+  .dash-card .tx .v{font-size:.92rem}
+  .dash-bill,.dash-sun,.dash-green,.dash-roof{display:none}
   /* ---- Why cards: swipeable horizontal carousel (Option A) ---- */
   .whyc>.wrap{overflow:visible}
-  .whyc-grid{display:flex;grid-template-columns:none;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 18px 4px;margin:0 -18px;scroll-padding-left:18px}
+  .whyc-grid{display:flex;grid-template-columns:none;gap:10px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 18px 2px;margin:0 -18px;scroll-padding-left:18px}
   .whyc-grid::-webkit-scrollbar{display:none}
-  .whyc-card{flex:0 0 82%;scroll-snap-align:start;display:block;padding:20px 20px 18px;min-height:172px}
-  .whyc-emblem{margin-bottom:12px;width:46px;height:46px}
-  .whyc-emblem svg{width:23px;height:23px}
-  .whyc-num{top:18px;right:20px}
-  .whyc-card h3{font-size:1.06rem}
-  .whyc-card p{font-size:.89rem}
+  .whyc-card{flex:0 0 82%;scroll-snap-align:start;display:block;padding:16px 16px 14px;min-height:138px}
+  .whyc-emblem{margin-bottom:9px;width:38px;height:38px}
+  .whyc-emblem svg{width:19px;height:19px}
+  .whyc-num{top:14px;right:16px;font-size:.74rem}
+  .whyc-card h3{font-size:.95rem;margin-bottom:5px;line-height:1.18}
+  .whyc-card p{font-size:.81rem;line-height:1.42}
   /* swipe hint dots */
-  .whyc-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
+  .whyc-dots{display:flex;justify-content:center;gap:6px;margin-top:12px}
   .whyc-dots i{width:7px;height:7px;border-radius:50%;background:#cbd5e3;transition:width .3s,background .3s}
   .whyc-dots i.on{width:20px;background:var(--green)}
   /* ---- Calculator / lead form ---- */
-  .calc-card{padding:20px 18px;border-radius:22px}
-  .calc-card h3{font-size:1.35rem}
-  .calc-card .lead{font-size:.92rem;margin-bottom:16px}
-  .cf-grid{gap:13px}
-  .cf-field label{font-size:.82rem}
+  .calc-card{padding:16px 14px;border-radius:20px}
+  .calc-card h3{font-size:1.22rem;margin-bottom:6px}
+  .calc-card .lead{font-size:.86rem;line-height:1.4;margin-bottom:10px}
+  .cf-grid{gap:10px}
+  .cf-field{gap:5px}
+  .cf-field label{font-size:.78rem}
   /* 16px inputs prevent iOS auto-zoom on focus */
-  .cf-input{font-size:16px;padding:13px 15px;border-radius:12px}
-  .cf-input.has-prefix{padding-left:34px}
-  .cf-btn{font-size:1.02rem;padding:16px 24px 16px 18px}
-  .cf-secure{font-size:.78rem}
+  .cf-input{font-size:16px;padding:11px 13px;border-radius:11px}
+  .cf-input.has-prefix{padding-left:32px}
+  .cf-submit{margin-top:12px}
+  .cf-btn{font-size:.78rem;padding:10px 16px 10px 13px;gap:10px}
+  .cf-btn .circ{width:27px;height:27px;border-width:1.6px}
+  .cf-btn .circ svg{width:12px;height:12px}
+  .cf-btn .spin{width:16px;height:16px;border-width:2px}
+  .cf-secure{margin-top:8px;font-size:.74rem;gap:7px}
+  .cf-secure svg{width:14px;height:14px}
   /* ---- Report ---- */
   .rep-head{margin-bottom:24px}
   .rep-check{width:64px;height:64px;margin-bottom:14px}
@@ -364,20 +378,40 @@ select.cf-input option{color:#0e1a3c}
   .rep-cta-row .rbtn{width:100%;justify-content:center;height:48px;font-size:.95rem}
   /* ---- How it works ---- */
   .how-track{max-width:none}
-  .how-step{gap:14px;padding:0 0 16px}
-  .how-step h4{font-size:.98rem}
-  .how-step p{font-size:.86rem}
+  .how-step{grid-template-columns:42px 1fr;column-gap:12px;row-gap:4px;padding:0 0 12px}
+  .how-num{width:42px;height:42px;font-size:1.1rem}
+  .how-ic{width:28px;height:28px;border-radius:8px}
+  .how-ic svg{width:15px;height:15px}
+  .how-step h4{font-size:.9rem;margin:0 0 0 36px;padding-top:5px;line-height:1.25}
+  .how-step p{font-size:.82rem;margin:3px 0 0;line-height:1.4}
   /* ---- Trust ---- */
-  .trust-grid{grid-template-columns:1fr;gap:11px}
-  .trust-card{padding:16px 18px}
-  .trust-card h4{font-size:1.02rem}
-  .trust-card p{font-size:.87rem}
+  .trust-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .trust-card{flex-direction:column;align-items:flex-start;gap:8px;padding:12px 11px;border-radius:14px}
+  .trust-ic{width:34px;height:34px;border-radius:10px}
+  .trust-ic svg{width:18px;height:18px}
+  .trust-card h4{font-size:.82rem;margin-bottom:3px;line-height:1.2}
+  .trust-card p{font-size:.72rem;line-height:1.38}
+  /* ---- FAQ help card (calculator page only) ---- */
+  #faq .faq-help{padding:14px 14px 13px;border-radius:17px}
+  #faq .faq-help .ic{width:32px;height:32px;border-radius:10px;margin-bottom:10px}
+  #faq .faq-help .ic svg{width:17px;height:17px}
+  #faq .faq-help h4{font-size:.9rem;margin-bottom:6px}
+  #faq .faq-help p{font-size:.72rem;line-height:1.3;margin-bottom:14px}
+  #faq .faq-help .cta{font-size:.74rem;padding:8px 16px 8px 10px;gap:8px}
+  #faq .faq-help .cta .circ{width:20px;height:20px;border-width:1.5px}
+  #faq .faq-help .cta .circ svg{width:9px;height:9px}
+  /* ---- Sticky mobile CTA ---- */
+  .mcta{gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom))}
+  .mcta a,.mcta button{font-size:.84rem;padding:11px 10px;gap:7px}
+  .mcta .m-call{flex:0 0 42px;padding:11px}
+  .mcta .m-call svg{width:15px;height:15px}
+  .mcta .m-gold svg{width:14px;height:14px}
 }
 /* Smallest phones (≤380px) */
 @media(max-width:380px){
-  .hero h1{font-size:1.55rem}
-  .dash{width:88vw}
+  .hero h1{font-size:1.48rem}
+  .dash{width:74vw}
   .hero-badge{font-size:.68rem}
-  .rep-head h3,.fcta h2,.calc-card h3{font-size:1.42rem}
-  .mcta a,.mcta button{font-size:.86rem}
+  .rep-head h3,.fcta h2,.calc-card h3{font-size:1.28rem}
+  .mcta a,.mcta button{font-size:.8rem}
 }

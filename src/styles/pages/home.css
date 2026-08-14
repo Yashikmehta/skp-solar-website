@@ -190,9 +190,9 @@
 .fdr-photo{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 70px rgba(14,26,60,.22);aspect-ratio:1/1;background:linear-gradient(160deg,var(--navy),var(--green))}
 .fdr-photo image-slot{width:100%;height:100%;display:block}
 .fdr-photo .ph-tint{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,26,60,.6),transparent 48%);pointer-events:none}
-.fdr-namecard{position:absolute;left:18px;right:18px;bottom:18px;display:flex;flex-direction:column;gap:2px;background:rgba(14,26,60,.42);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 17px;pointer-events:none}
-.fdr-namecard b{font-family:'Sora';font-weight:700;color:#fff;font-size:1.08rem}
-.fdr-namecard span{font-size:.78rem;color:rgba(255,255,255,.8)}
+.fdr-namecard{position:absolute;left:50%;right:auto;bottom:18px;transform:translateX(-50%);width:fit-content;max-width:calc(100% - 48px);display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;background:rgba(14,26,60,.42);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:12px 18px;pointer-events:none}
+.fdr-namecard b{font-family:'Sora';font-weight:700;color:#fff;font-size:1.08rem;line-height:1.2;white-space:nowrap}
+.fdr-namecard span{display:block;font-size:.78rem;color:rgba(255,255,255,.8);line-height:1.3;white-space:nowrap}
 .fdr-statcard{position:absolute;top:-20px;right:-18px;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:15px 19px;box-shadow:0 18px 40px rgba(14,26,60,.16);text-align:center}
 .fdr-statcard .v{font-family:'Sora';font-weight:800;font-size:1.55rem;color:var(--green);line-height:1}
 .fdr-statcard .k{font-size:.66rem;color:var(--muted);letter-spacing:.05em;margin-top:5px;text-transform:uppercase}
@@ -617,8 +617,9 @@
      of the name card, e.g. .fdr-statcard{top:-14px;bottom:auto;right:8px} —
      that puts it above the photo rather than over the caption. */
   .fdr-statcard{display:none}
-  .fdr-namecard{padding:11px 14px}
+  .fdr-namecard{padding:10px 14px;max-width:calc(100% - 40px)}
   .fdr-namecard b{font-size:.95rem}
+  .fdr-namecard span{font-size:.72rem}
   .fdr-quote{font-size:1.15rem;line-height:1.24;margin:2px 0 10px}
   /* Vision / Mission cards taken down a further 20% in height on phones at the
      client's request (2026-08-08). Mobile only. Was 128px per card:
@@ -647,9 +648,9 @@
   /* --- Book --- */
   .book .sec-head2{margin-bottom:22px}
   .book-grid{gap:30px}
-  .book-stage{min-height:289px}
-  .book-obj{transform:rotateY(-22deg) rotateX(6deg) scale(.663)}
-  .book .book-shadow{width:187px;height:22px;bottom:15px}
+  .book-stage{min-height:217px}
+  .book-obj{transform:rotateY(-22deg) rotateX(6deg)}
+  .book .book-shadow{width:140px;height:17px;bottom:11px}
   .book-why{font-size:.92rem}
   .book-learn li{font-size:.88rem}
   /* Book CTAs placed side by side and reduced 10% on phones at the client's
@@ -660,16 +661,13 @@
      label wraps inside. Horizontal padding is cut below 10% to give that label
      room; the type, arrow badge and vertical padding carry the 10%.
      align-items:stretch keeps both the same height despite different wrapping. */
-  .book .cta-row{flex-wrap:nowrap;gap:10px;align-items:stretch}
-  .book .cta-row>*{flex:1 1 0;min-width:0;justify-content:center;text-align:center}
-  /* Second 10% reduction on the same two buttons (2026-08-08), i.e. 81% of the
-     handoff size. Was: .cta .864rem / pad 11.7-10 / circ 30.6 / svg 13.5;
-     .cta-ghost .9rem / pad 12.6-10 / svg 15.3. */
-  .book .cta-row .cta{font-size:.778rem;padding:10.5px 9px;gap:7.2px}
-  .book .cta-row .cta .circ{width:27.5px;height:27.5px}
-  .book .cta-row .cta .circ svg{width:12.2px;height:12.2px}
-  .book .cta-row .cta-ghost{font-size:.81rem;padding:11.3px 9px;gap:6.3px}
-  .book .cta-row .cta-ghost svg{width:13.8px;height:13.8px}
+  .book .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;align-items:stretch}
+  .book .cta-row>*{width:100%;min-width:0;justify-content:center;text-align:center;white-space:normal;line-height:1.2}
+  .book .cta-row .cta{font-size:.68rem;padding:9px 8px;gap:5px}
+  .book .cta-row .cta .circ{width:20px;height:20px;border-width:1.5px;flex-shrink:0}
+  .book .cta-row .cta .circ svg{width:9px;height:9px}
+  .book .cta-row .cta-ghost{font-size:.68rem;padding:9px 8px;gap:5px}
+  .book .cta-row .cta-ghost svg{width:14px;height:14px;flex-shrink:0}
   /* --- Testimonials --- */
   .tst-top{margin-bottom:22px}
   .tst-masonry{column-count:1}

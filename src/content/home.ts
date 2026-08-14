@@ -91,8 +91,8 @@ export const valueCards: ValueCard[] = [
 
 export const founder = {
   name: 'Ravinder Pabla',
-  role: 'Founder & Managing Director, SKP Solar World',
-  shortRole: 'Founder & Managing Director',
+  role: 'Author & Director',
+  shortRole: 'Author & Director',
   portrait: '/assets/founder-portrait.png',
   quote:
     'We powered our own factory first. Only once the savings showed up on our bill did we start putting solar on anyone else’s roof.',
