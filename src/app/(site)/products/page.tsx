@@ -4,9 +4,7 @@ import '@/styles/pages/products.css';
 
 import { ComparisonTable } from '@/components/products/ComparisonTable';
 import { ProductCatalogue } from '@/components/products/ProductCatalogue';
-import { FinalCta } from '@/components/sections/FinalCta';
-import { Hl } from '@/components/ui/SectionHeading';
-import { ANCHORS, ROUTES } from '@/lib/routes';
+import { ROUTES } from '@/lib/routes';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = pageMetadata({
@@ -68,36 +66,6 @@ export default function ProductsPage() {
 
       <ProductCatalogue />
       <ComparisonTable />
-
-      <FinalCta
-        kicker="Start your solar journey"
-        title={
-          <>
-            Ready to Power Your Future <Hl>with Solar?</Hl>
-          </>
-        }
-        subtitle="Talk to our solar experts and receive a customized solar solution tailored to your energy requirements."
-        actions={[
-          {
-            label: 'Get Free Consultation',
-            href: ANCHORS.enquiry,
-            variant: 'gold',
-            icon: 'arrowRight',
-            circled: true,
-          },
-          {
-            label: 'Download Product Catalogue',
-            href: '#downloads',
-            variant: 'ghost',
-            icon: 'document',
-          },
-        ]}
-        trust={[
-          'Authorised Waaree distributor',
-          'In-house engineering team',
-          '30-year factory-backed warranties',
-        ]}
-      />
     </>
   );
 }
