@@ -57,6 +57,9 @@ export function organizationJsonLd() {
     url: SITE_URL,
     telephone: siteSettings.phone,
     email: siteSettings.email,
+    /* GSTIN. schema.org's `taxID` is the field for a tax registration number,
+       and it helps Google tie the site to the registered business. */
+    taxID: siteSettings.gst,
     image: `${SITE_URL}/assets/skp-logo.png`,
     logo: `${SITE_URL}/assets/skp-logo.png`,
     address: {

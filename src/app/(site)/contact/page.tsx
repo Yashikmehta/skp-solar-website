@@ -14,9 +14,9 @@ import { ANCHORS, ROUTES } from '@/lib/routes';
 import { telHref } from '@/lib/site';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Contact SKP Solar World — Jalandhar, Punjab',
+  title: 'Contact SKP Solar World — Malerkotla, Punjab',
   description:
-    'Talk to SKP Solar World about a rooftop or industrial solar plant: enquiry form, phone, WhatsApp and office details in Jalandhar, Punjab.',
+    'Talk to SKP Solar World about a rooftop or industrial solar plant: enquiry form, phone, WhatsApp and office details in Malerkotla, Punjab.',
   path: ROUTES.contact,
   image: '/assets/industrial.jpg',
 });

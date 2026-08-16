@@ -67,6 +67,8 @@ export function Footer() {
                   {index < siteSettings.addressLines.length - 1 ? <br /> : null}
                 </span>
               ))}
+              <br />
+              GST: {siteSettings.gst}
             </span>
           </Link>
 

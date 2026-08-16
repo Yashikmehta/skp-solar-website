@@ -12,14 +12,10 @@ import { ROUTES } from './routes';
  * `siteSettings` singleton (see `src/content/schemas.ts`) and nothing else in
  * the codebase has to change — components already read from here.
  *
- * ✅ CONFIRMED BY THE CLIENT: phone and email below are the live business
- *    details. Every tel:, mailto: and wa.me link on the site derives from
- *    them — change them here and nowhere else.
- *
- * ⚠️  STILL UNCONFIRMED (HANDOFF.md §8): the office address is carried over
- *    from the design. It shows on the Contact page and in the LocalBusiness
- *    JSON-LD. `whatsapp` currently mirrors the business phone — see the note
- *    on that field.
+ * ✅ CONFIRMED BY THE CLIENT: phone, email, the registered office address and
+ *    the GSTIN below are the live business details. Every tel:, mailto: and
+ *    wa.me link, the Contact page, the footer and the LocalBusiness JSON-LD
+ *    all derive from here — change them here and nowhere else.
  * ============================================================================
  */
 
@@ -37,6 +33,8 @@ export interface SiteSettings {
   postalCode: string;
   locality: string;
   region: string;
+  /** GSTIN, shown on the Contact page and in the footer. */
+  gst: string;
   country: string;
   hours: string;
   hoursNote: string;
@@ -55,10 +53,11 @@ export const siteSettings: SiteSettings = {
      separate WhatsApp Business number, change this one field. */
   whatsapp: '917696925523',
   email: 'sales@skpsolarworld.com',
-  addressLines: ['SKP Solar World, Industrial Area,', 'Jalandhar, Punjab 144004'],
-  postalCode: '144004',
-  locality: 'Jalandhar',
+  addressLines: ['7, MGF Enclave, Kupkalan,', 'Malerkotla, Punjab 148019'],
+  postalCode: '148019',
+  locality: 'Malerkotla',
   region: 'Punjab',
+  gst: '03AFLFS1285F1Z0',
   country: 'IN',
   hours: 'Mon – Sat · 9:00 AM – 6:30 PM',
   hoursNote: 'Sunday: site visits by appointment',

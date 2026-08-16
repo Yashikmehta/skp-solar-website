@@ -109,3 +109,18 @@
   border-radius: 8px;
   background: rgba(14, 26, 60, 0.06);
 }
+
+/* ---------------------------------------------------------------------------
+   GSTIN line on the Contact page address card.
+
+   The registration number is a legal/compliance detail, not part of the
+   address, so it sits a step quieter than the lines above it. Inherits the
+   card's own colour and font — no new type or palette is introduced. */
+
+.gcard-gst {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.92em;
+  letter-spacing: 0.01em;
+  opacity: 0.75;
+}

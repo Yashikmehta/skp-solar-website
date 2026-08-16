@@ -77,13 +77,13 @@ export const contactFaqs: FaqItem[] = [
     question: 'Which areas do you serve?',
     answer: (
       <>
-        We&apos;re based in <b>Jalandhar</b> and serve homes and businesses across Punjab —
+        We&apos;re based in <b>Malerkotla</b> and serve homes and businesses across Punjab —
         Ludhiana, Amritsar, the Chandigarh region and beyond. For larger industrial projects, we
         travel across North India.
       </>
     ),
     plainAnswer:
-      "We're based in Jalandhar and serve homes and businesses across Punjab — Ludhiana, Amritsar, the Chandigarh region and beyond. For larger industrial projects, we travel across North India.",
+      "We're based in Malerkotla and serve homes and businesses across Punjab — Ludhiana, Amritsar, the Chandigarh region and beyond. For larger industrial projects, we travel across North India.",
   },
   {
     category: 'Savings',

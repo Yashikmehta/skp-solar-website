@@ -36,6 +36,8 @@ export function ContactCards() {
             {index < siteSettings.addressLines.length - 1 ? <br /> : null}
           </span>
         ))}
+        <br />
+        <span className="gcard-gst">GST: {siteSettings.gst}</span>
       </ContactCard>
 
       <ContactCard icon="phone" title="Phone Number" delay="dly2">
