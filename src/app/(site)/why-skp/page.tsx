@@ -136,6 +136,13 @@ export default function WhySkpPage() {
                 <span className="war-chip">
                   <Icon name="sun" /> Waaree Tier-1 Modules
                 </span>
+                {/* Co-branding badge, top-right — the only corner the chip,
+                    brand card and inset photo leave free. On a light plate
+                    because the logo's green would otherwise sit on the
+                    photo's green sky. */}
+                <span className="war-photo-logo">
+                  <Image src="/assets/waaree-logo.png" alt="Waaree" width={78} height={23} />
+                </span>
               </div>
               <div className="war-photo2">
                 <Image

@@ -157,3 +157,43 @@
     max-width: 140px;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Waaree co-branding badge on the `.war-photo` image (/why-skp).
+
+   Mirrors `.war-chip` opposite it — same offsets, same pill radius, same
+   backdrop blur — but on a light plate. The logo is green, and the photo's
+   sky behind this corner is also green, so a dark chip would bury it. */
+
+.war-photo .war-photo-logo {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 13px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 6px 18px rgba(14, 26, 60, 0.16);
+  pointer-events: none;
+}
+
+.war-photo .war-photo-logo img {
+  width: 78px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 560px) {
+  .war-photo .war-photo-logo {
+    top: 12px;
+    right: 12px;
+    padding: 6px 10px;
+  }
+  .war-photo .war-photo-logo img {
+    width: 62px;
+  }
+}
