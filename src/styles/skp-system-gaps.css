@@ -124,3 +124,36 @@
   letter-spacing: 0.01em;
   opacity: 0.75;
 }
+
+/* ---------------------------------------------------------------------------
+   Waaree logo in the `.war-brandcard` on /why-skp.
+
+   The approved design used a gold "W" tile (`.mk`) plus a WAAREE wordmark as a
+   placeholder for the supplied logo. The artwork replaces both, so the card
+   keeps its shape — white pill, same padding, same shadow — and only the mark
+   inside it changes.
+
+   The tagline beside it needs a max-width, or the card grows wider than the
+   photo it overlaps on narrow screens. */
+
+.war-brandcard .war-brandlogo {
+  width: 104px;
+  height: auto;
+  flex: none;
+  display: block;
+}
+
+.war-brandcard > span {
+  max-width: 168px;
+  line-height: 1.35;
+  margin-top: 0;
+}
+
+@media (max-width: 560px) {
+  .war-brandcard .war-brandlogo {
+    width: 84px;
+  }
+  .war-brandcard > span {
+    max-width: 140px;
+  }
+}

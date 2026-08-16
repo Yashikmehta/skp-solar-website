@@ -145,12 +145,19 @@ export default function WhySkpPage() {
                   sizes="(max-width: 900px) 45vw, 18vw"
                 />
               </div>
+              {/* The design shipped a gold "W" tile and a WAAREE wordmark as a
+                  stand-in for the real logo. Now that the artwork exists it
+                  replaces both — the logo already carries the wordmark, so
+                  repeating it in type would be redundant. */}
               <div className="war-brandcard">
-                <span className="mk">W</span>
-                <span>
-                  <b>WAAREE</b>
-                  <span>India’s leading solar module manufacturer</span>
-                </span>
+                <Image
+                  className="war-brandlogo"
+                  src="/assets/waaree-logo.png"
+                  alt="Waaree"
+                  width={104}
+                  height={31}
+                />
+                <span>India’s leading solar module manufacturer</span>
               </div>
             </div>
 
