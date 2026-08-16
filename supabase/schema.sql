@@ -70,3 +70,35 @@ create policy "website can insert leads"
   with check (true);
 
 -- Deliberately no SELECT / UPDATE / DELETE policy for anon.
+
+
+-- ============================================================================
+-- ADMIN CREDENTIALS
+-- ============================================================================
+-- Lets the admin change the panel password from Settings instead of editing a
+-- Vercel environment variable and redeploying.
+--
+-- Only ever holds a PBKDF2-SHA256 hash — never the password itself. Until a
+-- password is set here, login falls back to the ADMIN_PASSWORD environment
+-- variable, so nothing breaks on the first deploy.
+--
+-- The `id = 1` check keeps this to exactly one row: there is one shared admin
+-- password, and a second row would be ambiguous.
+-- ============================================================================
+create table if not exists public.admin_settings (
+  id            smallint primary key default 1 check (id = 1),
+  password_hash text not null,
+  updated_at    timestamptz not null default now()
+);
+
+-- Locked to service_role. anon and authenticated get nothing at all: the
+-- public-facing key must never be able to read or overwrite the admin hash.
+revoke all on table public.admin_settings from anon, authenticated;
+grant select, insert, update, delete on table public.admin_settings to service_role;
+
+-- LOCKED OUT? Delete the row and login falls back to the ADMIN_PASSWORD
+-- environment variable again:
+--     delete from public.admin_settings where id = 1;
+
+alter table public.admin_settings enable row level security;
+-- No policies. service_role bypasses RLS; every other role is denied.

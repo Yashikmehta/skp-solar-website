@@ -1,11 +1,6 @@
 import { NextResponse } from 'next/server';
-import {
-  ADMIN_COOKIE,
-  checkPassword,
-  cookieOptions,
-  createSession,
-  isAdminConfigured,
-} from '@/lib/admin-auth';
+import { ADMIN_COOKIE, cookieOptions, createSession, isAdminConfigured } from '@/lib/admin-auth';
+import { checkAdminPassword, currentFingerprint } from '@/lib/admin-credentials';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -72,9 +67,11 @@ export async function POST(request: Request) {
     return slowFailure();
   }
 
-  if (!password || !checkPassword(password)) return slowFailure();
+  if (!password || !(await checkAdminPassword(password))) return slowFailure();
 
-  const session = await createSession();
+  /* Bind the session to the password it was issued against, so changing the
+     password signs every existing session out. */
+  const session = await createSession(await currentFingerprint());
   const response = NextResponse.json({ ok: true });
   response.cookies.set(ADMIN_COOKIE, session.value, cookieOptions(session.maxAge));
 

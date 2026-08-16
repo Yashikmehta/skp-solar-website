@@ -149,6 +149,15 @@ export function isAdminReadConfigured(): boolean {
   return Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
 }
 
+/**
+ * The service-role client, for server-side admin features that need more than
+ * reading leads (currently the stored admin password). Returns null when the
+ * environment is not configured so callers can degrade rather than crash.
+ */
+export function getAdminDb(): SupabaseClient | null {
+  return getAdminClient();
+}
+
 export interface LeadQueryResult {
   leads: StoredLead[];
   error: string | null;
@@ -184,4 +193,46 @@ export async function fetchLeads(
 
   if (error) return { leads: [], error: error.message };
   return { leads: (data ?? []) as StoredLead[], error: null };
+}
+
+/**
+ * Every stored lead, for CSV export.
+ *
+ * Paginated because PostgREST caps a single response (1,000 rows by default),
+ * so a plain high `limit` would silently truncate the export — the worst
+ * possible failure mode for a "download all my leads" button.
+ */
+export async function fetchAllLeads(source?: LeadPayload['source']): Promise<LeadQueryResult> {
+  const supabase = getAdminClient();
+
+  if (!supabase) {
+    return {
+      leads: [],
+      error: 'Supabase is not configured — set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.',
+    };
+  }
+
+  const PAGE = 1000;
+  const all: StoredLead[] = [];
+
+  for (let from = 0; ; from += PAGE) {
+    let query = supabase
+      .from('leads')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .range(from, from + PAGE - 1);
+
+    if (source) query = query.eq('source', source);
+
+    const { data, error } = await query;
+    if (error) return { leads: [], error: error.message };
+
+    const batch = (data ?? []) as StoredLead[];
+    all.push(...batch);
+
+    /* A short page means we have reached the end. */
+    if (batch.length < PAGE) break;
+  }
+
+  return { leads: all, error: null };
 }

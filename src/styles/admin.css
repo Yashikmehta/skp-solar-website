@@ -78,6 +78,26 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+.adm-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+.adm-barlink {
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 9px 14px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  transition: background 0.18s;
+  white-space: nowrap;
+}
+.adm-barlink:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
 /* ---- Page shell ---- */
 .adm-wrap {
   max-width: 1180px;
@@ -265,6 +285,135 @@
 .adm-error b {
   display: block;
   margin-bottom: 3px;
+}
+
+/* ---- Export ---- */
+.adm-export {
+  background: #fff;
+  border: 1px solid #e4e9f0;
+  border-radius: 13px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 1px 3px rgba(16, 30, 54, 0.05);
+}
+.adm-export-head b {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy, #0e1a3c);
+}
+.adm-export-head span {
+  display: block;
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 3px;
+}
+.adm-export-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.adm-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--navy, #0e1a3c);
+  background: #f4f7fb;
+  border: 1px solid #dbe3ed;
+  border-radius: 9px;
+  padding: 9px 14px;
+  transition: background 0.16s, border-color 0.16s;
+  white-space: nowrap;
+}
+.adm-export-btn:hover {
+  background: #e9eff7;
+  border-color: #c3d0e0;
+}
+.adm-export-btn.primary {
+  background: var(--navy, #0e1a3c);
+  border-color: var(--navy, #0e1a3c);
+  color: #fff;
+}
+.adm-export-btn.primary:hover {
+  background: #16264f;
+}
+.adm-export-btn i {
+  font-style: normal;
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: rgba(14, 26, 60, 0.09);
+  border-radius: 20px;
+  padding: 2px 7px;
+}
+.adm-export-btn.primary i {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---- Settings panel ---- */
+.adm-crumb {
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+}
+.adm-crumb a {
+  color: #5b6b80;
+  font-weight: 600;
+}
+.adm-crumb a:hover {
+  color: var(--navy, #0e1a3c);
+}
+.adm-panel {
+  background: #fff;
+  border: 1px solid #e4e9f0;
+  border-radius: 13px;
+  padding: 24px 24px 26px;
+  max-width: 470px;
+  margin-top: 22px;
+  box-shadow: 0 1px 3px rgba(16, 30, 54, 0.05);
+}
+.adm-panel-title {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy, #0e1a3c);
+}
+.adm-panel-note {
+  font-size: 0.83rem;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 6px 0 20px;
+}
+.adm-panel .adm-label {
+  margin-top: 15px;
+}
+.adm-panel .adm-label:first-of-type {
+  margin-top: 0;
+}
+.adm-input-bad {
+  border-color: #d98b8b;
+}
+.adm-input-bad:focus {
+  border-color: #c04545;
+  box-shadow: 0 0 0 3px rgba(192, 69, 69, 0.15);
+}
+.adm-msg-bad {
+  margin-top: 13px;
+  color: #b02a2a;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+.adm-msg-good {
+  margin-top: 13px;
+  color: #1f7a5c;
+  font-size: 0.84rem;
+  line-height: 1.5;
 }
 
 /* ---- Login ---- */

@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { LogoutButton } from './LogoutButton';
+import { AdminBar } from './AdminBar';
 import { formatIst } from '@/lib/lead-email';
 import type { CalculatorEstimate } from '@/lib/leads';
+import { requireAdmin } from '@/lib/admin-credentials';
 import { fetchLeads, type StoredLead } from '@/lib/supabase';
 
 /* Leads must never be cached — the panel always reflects the database. */
@@ -116,6 +116,10 @@ export default async function AdminPage({
 }: {
   searchParams: Promise<{ tab?: string }>;
 }) {
+  /* Middleware checks the signature; this also checks the session was issued
+     against the password currently in force. */
+  await requireAdmin();
+
   const { tab } = await searchParams;
   const active: Tab = tab === 'calculator' ? 'calculator' : 'enquiries';
 
@@ -129,18 +133,7 @@ export default async function AdminPage({
 
   return (
     <div className="adm-body">
-      <div className="adm-bar">
-        <div className="adm-bar-inner">
-          <div className="adm-brand">
-            <Image src="/assets/skp-logo.png" alt="" width={32} height={32} />
-            <span className="adm-brand-txt">
-              <b>SKP Solar World</b>
-              <span>Admin Panel</span>
-            </span>
-          </div>
-          <LogoutButton />
-        </div>
-      </div>
+      <AdminBar />
 
       <div className="adm-wrap">
         <h1 className="adm-title">Customer Enquiries</h1>
@@ -172,6 +165,26 @@ export default async function AdminPage({
             Solar Calculator <span className="adm-count">{calculator.length}</span>
           </Link>
         </nav>
+
+        {/* Plain links, not fetch() — the browser handles the download and the
+            Content-Disposition header names the file. */}
+        <section className="adm-export">
+          <div className="adm-export-head">
+            <b>Export to CSV</b>
+            <span>Opens in Excel, Numbers or Google Sheets. Includes every record.</span>
+          </div>
+          <div className="adm-export-btns">
+            <a className="adm-export-btn" href="/api/admin/export?type=enquiries" download>
+              Enquiries <i>{enquiries.length}</i>
+            </a>
+            <a className="adm-export-btn" href="/api/admin/export?type=calculator" download>
+              Calculator <i>{calculator.length}</i>
+            </a>
+            <a className="adm-export-btn primary" href="/api/admin/export?type=all" download>
+              All leads <i>{leads.length}</i>
+            </a>
+          </div>
+        </section>
 
         {shown.length === 0 ? (
           <div className="adm-empty">
