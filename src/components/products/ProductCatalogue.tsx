@@ -142,9 +142,6 @@ export function ProductCatalogue() {
                       </span>
                       Get a Quote
                     </Link>
-                    <Link href="#downloads" className="pm-btn ghost">
-                      Datasheet
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -263,9 +260,6 @@ export function ProductCatalogue() {
                     <Icon name="arrowRight" />
                   </span>
                   Talk to an Engineer
-                </Link>
-                <Link href="#downloads" className="pm-btn ghost">
-                  Full Specifications
                 </Link>
               </div>
             </div>
