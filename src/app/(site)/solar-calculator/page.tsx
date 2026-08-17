@@ -294,9 +294,6 @@ export default function CalculatorPage() {
         <div className="fcta-orb2" />
         <div className="wrap">
           <div className="fcta-inner">
-            <div className="fcta-kicker reveal">
-              <i /> Start your solar journey
-            </div>
             <h2 className="reveal dly1">
               Stop Paying Rising Electricity Bills.
               <br />

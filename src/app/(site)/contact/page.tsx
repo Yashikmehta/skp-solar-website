@@ -5,13 +5,11 @@ import { ContactCards } from '@/components/contact/ContactCards';
 import { ContactHero } from '@/components/contact/ContactHero';
 import { EnquiryForm } from '@/components/forms/EnquiryForm';
 import { Faq } from '@/components/sections/Faq';
-import { FinalCta } from '@/components/sections/FinalCta';
 import { AmbientOrb } from '@/components/ui/AmbientOrb';
 import { Hl, SectionHeading } from '@/components/ui/SectionHeading';
 import { contactFaqs } from '@/content/faqs';
 import { faqJsonLd, pageMetadata } from '@/lib/seo';
-import { ANCHORS, ROUTES } from '@/lib/routes';
-import { telHref } from '@/lib/site';
+import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Contact SKP Solar World — Malerkotla, Punjab',
@@ -53,37 +51,6 @@ export default function ContactPage() {
       </section>
 
       <Faq items={contactFaqs} />
-
-      <FinalCta
-        kicker="Start your solar journey"
-        title={
-          <>
-            Ready to <Hl>Switch to Solar?</Hl>
-          </>
-        }
-        subtitle="Our engineers will assess your property, estimate your savings, and recommend the right solar solution for your needs."
-        actions={[
-          {
-            label: 'Book Free Site Survey',
-            href: ANCHORS.enquiry,
-            variant: 'gold',
-            icon: 'arrowRight',
-            circled: true,
-          },
-          {
-            label: 'Calculate Solar Savings',
-            href: ROUTES.calculator,
-            variant: 'ghost',
-            icon: 'calculator',
-          },
-          { label: 'Call Now', href: telHref, variant: 'ghost', icon: 'phone' },
-        ]}
-        trust={[
-          'Authorised Waaree distributor',
-          'In-house engineering team',
-          'Honest, conservative estimates',
-        ]}
-      />
 
       <script
         type="application/ld+json"

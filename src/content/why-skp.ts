@@ -185,7 +185,7 @@ export const processSteps: ProcessStep[] = [
 
 /** `.stats` — the trust bar. */
 export const trustStats = [
-  { icon: 'statRoof' as IconName, count: 140, suffix: '+', label: 'Projects commissioned' },
+  { icon: 'statRoof' as IconName, count: 50, suffix: '+', label: 'Projects commissioned' },
   {
     icon: 'statPanel' as IconName,
     count: 500,

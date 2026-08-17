@@ -8,6 +8,7 @@ import { Gallery } from '@/components/home/Gallery';
 import { HomeHero } from '@/components/home/HomeHero';
 import { SolutionsSwitcher } from '@/components/home/SolutionsSwitcher';
 import { Testimonials } from '@/components/home/Testimonials';
+import { TrustedBy } from '@/components/home/TrustedBy';
 import { VideoShowcase } from '@/components/home/VideoShowcase';
 import { Faq } from '@/components/sections/Faq';
 import { FinalCta } from '@/components/sections/FinalCta';
@@ -17,7 +18,7 @@ import { Hl } from '@/components/ui/SectionHeading';
 import { homeFaqs } from '@/content/faqs-home';
 import { valueCards } from '@/content/home';
 import { faqJsonLd, pageMetadata } from '@/lib/seo';
-import { ANCHORS, ROUTES } from '@/lib/routes';
+import { ROUTES } from '@/lib/routes';
 import { telHref, waHref } from '@/lib/site';
 
 export const metadata: Metadata = pageMetadata({
@@ -48,11 +49,12 @@ export default function HomePage() {
       />
 
       <RoiCalculator />
+      <VideoShowcase />
+      <TrustedBy />
       <FounderStory />
       <BookTeaser />
       <Testimonials />
       <Gallery />
-      <VideoShowcase />
 
       <Faq
         items={homeFaqs}
@@ -62,7 +64,6 @@ export default function HomePage() {
       />
 
       <FinalCta
-        kicker="Start your solar journey"
         title={
           <>
             Ready to Start <Hl>Saving With Solar?</Hl>
@@ -70,25 +71,12 @@ export default function HomePage() {
         }
         subtitle="Get a personalized solar consultation and discover how much you can save with SKP Solar."
         actions={[
-          {
-            label: 'Book a free consultation',
-            href: ANCHORS.enquiry,
-            variant: 'gold',
-            icon: 'arrowRight',
-            circled: true,
-          },
           { label: 'Call us now', href: telHref, variant: 'ghost', icon: 'phone' },
           { label: 'WhatsApp', href: waHref, variant: 'wa' },
-          {
-            label: 'Request a quote',
-            href: ROUTES.contact,
-            variant: 'ghost',
-            icon: 'document',
-          },
         ]}
         stats={[
           { value: <Counter to={30} suffix="+" suffixClassName="u" />, label: 'Years in manufacturing' },
-          { value: <Counter to={140} suffix="+" suffixClassName="u" />, label: 'Projects commissioned' },
+          { value: <Counter to={50} suffix="+" suffixClassName="u" />, label: 'Projects commissioned' },
           {
             value: <Counter to={4.9} decimals={1} suffix="★" suffixClassName="u" />,
             label: 'Average customer rating',

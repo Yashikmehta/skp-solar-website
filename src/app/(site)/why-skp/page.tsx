@@ -193,7 +193,6 @@ export default function WhySkpPage() {
       <TrustSection />
 
       <FinalCta
-        kicker="Start your solar journey"
         title={
           <>
             Ready to Build on <Hl>Real Engineering?</Hl>

@@ -83,7 +83,6 @@ export function FounderStory() {
                 alt={`${founder.name}, ${founder.shortRole}`}
                 fill
                 sizes="(max-width: 900px) 90vw, 30vw"
-                style={{ objectFit: 'contain', objectPosition: '50% 20%' }}
               />
               <div className="ph-tint" />
               <div className="fdr-namecard">

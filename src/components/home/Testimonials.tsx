@@ -1,13 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AmbientOrb } from '@/components/ui/AmbientOrb';
 import { Counter } from '@/components/ui/Counter';
 import { Icon } from '@/components/ui/Icon';
 import { Hl, SectionHeading } from '@/components/ui/SectionHeading';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { testimonials } from '@/content/home';
+import '@/styles/components/testimonials.css';
 
 function Stars() {
   return (
@@ -22,14 +23,19 @@ function Stars() {
 /**
  * `.tst` — the testimonial masonry.
  *
- * Card variants (featured quote, video thumbnail, before/after bars, metric
- * counter) all come from the Testimonials collection shape in HANDOFF.md §5.
- * The before/after bars animate their width on scroll, ported from
- * `armBeforeAfter()`.
+ * Desktop keeps the multi-column masonry. Mobile becomes a horizontal
+ * swipe carousel with snap, 3-dot hints, and seamless looping.
  */
 export function Testimonials() {
   const gridRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReducedMotion();
+  const [active, setActive] = useState(0);
+  const wrapping = useRef(false);
+  const count = testimonials.length;
+  const DOT_COUNT = 3;
+
+  /* Render three copies so swipe can loop: [A][B][C] */
+  const looped = [...testimonials, ...testimonials, ...testimonials];
 
   useEffect(() => {
     const grid = gridRef.current;
@@ -63,6 +69,104 @@ export function Testimonials() {
     return () => observer.disconnect();
   }, [reduced]);
 
+  /* Start in the middle copy so users can swipe either direction (mobile only). */
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || count === 0) return;
+
+    const startInMiddle = () => {
+      if (!window.matchMedia('(max-width: 760px)').matches) return;
+      const cards = grid.querySelectorAll<HTMLElement>('.tst-card');
+      const middle = cards[count];
+      if (!middle) return;
+      wrapping.current = true;
+      grid.scrollLeft = middle.offsetLeft - 18;
+      setActive(0);
+      requestAnimationFrame(() => {
+        wrapping.current = false;
+      });
+    };
+
+    startInMiddle();
+    window.addEventListener('resize', startInMiddle);
+    return () => window.removeEventListener('resize', startInMiddle);
+  }, [count]);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || count === 0) return;
+
+    const sync = () => {
+      if (wrapping.current) return;
+      if (!window.matchMedia('(max-width: 760px)').matches) return;
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>('.tst-card'));
+      if (cards.length === 0) return;
+
+      const mid = grid.scrollLeft + grid.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      cards.forEach((card, index) => {
+        const center = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(center - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = index;
+        }
+      });
+
+      /* Jump between cloned sets so the loop never hits a hard stop. */
+      if (best < count) {
+        wrapping.current = true;
+        const twin = cards[best + count];
+        if (twin) grid.scrollLeft = twin.offsetLeft - 18;
+        setActive(best);
+        requestAnimationFrame(() => {
+          wrapping.current = false;
+        });
+        return;
+      }
+
+      if (best >= count * 2) {
+        wrapping.current = true;
+        const twin = cards[best - count];
+        if (twin) grid.scrollLeft = twin.offsetLeft - 18;
+        setActive(best - count * 2);
+        requestAnimationFrame(() => {
+          wrapping.current = false;
+        });
+        return;
+      }
+
+      setActive(best - count);
+    };
+
+    grid.addEventListener('scroll', sync, { passive: true });
+    return () => grid.removeEventListener('scroll', sync);
+  }, [count]);
+
+  function goToReal(index: number) {
+    const grid = gridRef.current;
+    if (!grid || count === 0) return;
+    const real = ((index % count) + count) % count;
+    const cards = grid.querySelectorAll<HTMLElement>('.tst-card');
+    const card = cards[real + count];
+    if (!card) return;
+    grid.scrollTo({ left: card.offsetLeft - 18, behavior: 'smooth' });
+    setActive(real);
+  }
+
+  function goToDot(dotIndex: number) {
+    if (count <= 1) {
+      goToReal(0);
+      return;
+    }
+    const target = Math.round((dotIndex / (DOT_COUNT - 1)) * (count - 1));
+    goToReal(target);
+  }
+
+  const activeDot =
+    count <= 1 ? 0 : Math.min(DOT_COUNT - 1, Math.round((active / (count - 1)) * (DOT_COUNT - 1)));
+
   return (
     <section className="tst" id="testimonials">
       <AmbientOrb
@@ -87,18 +191,20 @@ export function Testimonials() {
             <div className="num">4.9</div>
             <div>
               <Stars />
-              <div className="sub">Across 140+ installations</div>
+              <div className="sub">Across 50+ installations</div>
             </div>
           </div>
         </div>
 
         <div className="tst-masonry" ref={gridRef}>
-          {testimonials.map((item) => (
+          {looped.map((item, index) => {
+            const isClone = index < count || index >= count * 2;
+            return (
             <div
-              className={`tst-card${item.variant ? ` ${item.variant}` : ''} reveal${
-                item.delay ? ` ${item.delay}` : ''
-              }`}
-              key={item.name}
+              className={`tst-card${item.variant ? ` ${item.variant}` : ''}${
+                isClone ? ' is-clone' : ' reveal'
+              }${item.delay && !isClone ? ` ${item.delay}` : ''}`}
+              key={`${item.name}-${index}`}
             >
               {item.video ? (
                 <div className="tst-video">
@@ -170,19 +276,21 @@ export function Testimonials() {
                 </div>
               ) : null}
             </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Client logo strip. HANDOFF.md §8 lists licensed logos as still
-            outstanding, so these render as the design's empty placeholder
-            slots — drop <Image> elements in when the files arrive. */}
-        <div className="tst-logos reveal">
-          <div className="cap">Trusted by businesses &amp; homes across North India</div>
-          <div className="tst-logos-row">
-            {Array.from({ length: 5 }, (_, index) => (
-              <span className="tst-logo-slot" key={index} aria-hidden="true" />
-            ))}
-          </div>
+        <div className="tst-dots" role="tablist" aria-label="Testimonial slides">
+          {Array.from({ length: DOT_COUNT }, (_, index) => (
+            <button
+              type="button"
+              key={index}
+              className={`tst-dot${index === activeDot ? ' active' : ''}`}
+              aria-label={`Show testimonials group ${index + 1}`}
+              aria-selected={index === activeDot}
+              onClick={() => goToDot(index)}
+            />
+          ))}
         </div>
       </div>
     </section>

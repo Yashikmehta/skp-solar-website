@@ -226,6 +226,8 @@ export interface VideoItem {
   duration: string;
   thumbnail: string;
   alt: string;
+  /** Optional playable file or URL — when set, the lightbox plays this video. */
+  src?: string;
 }
 
 export const featuredVideo: VideoItem = {
@@ -237,6 +239,7 @@ export const featuredVideo: VideoItem = {
 };
 
 export const sideVideos: VideoItem[] = [
+  // Kept for future use — side cards currently hidden from VideoShowcase.
   {
     title: 'How net-metering actually works',
     category: 'Explainer',
@@ -332,6 +335,31 @@ export const testimonials: Testimonial[] = [
       'Honest from day one. They told us a smaller system made more sense than what we asked for — and saved us money.',
     name: 'Gurpreet Bansal',
     role: 'Homeowner · Mohali',
+  },
+];
+
+/* ---------------------------------------------------------------- */
+/* Trusted-by logo strip (homepage testimonials)                    */
+/* ---------------------------------------------------------------- */
+
+export const trustedLogos = [
+  {
+    name: 'Rajeshwari Lalit Industries',
+    src: '/assets/logo-rajeshwari.png',
+    width: 140,
+    height: 56,
+  },
+  {
+    name: 'PBT — World Class Bearings',
+    src: '/assets/logo-pbt.png',
+    width: 140,
+    height: 56,
+  },
+  {
+    name: 'National Industries',
+    src: '/assets/logo-national.png',
+    width: 160,
+    height: 48,
   },
 ];
 

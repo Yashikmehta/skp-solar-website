@@ -130,7 +130,6 @@ export const footerColumns: FooterColumn[] = [
 /** Credential badges in the footer brand column. */
 export const footerBadges = [
   { icon: 'shield' as const, label: 'Waaree authorized distributor · Punjab' },
-  { icon: 'factory' as const, label: '30+ years of manufacturing' },
 ];
 
 /**

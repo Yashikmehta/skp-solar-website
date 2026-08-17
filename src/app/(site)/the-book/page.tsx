@@ -149,7 +149,6 @@ export default function BookPage() {
                   alt={`${founder.name}, author of ${book.title}`}
                   fill
                   sizes="(max-width: 900px) 90vw, 30vw"
-                  style={{ objectFit: 'cover', objectPosition: '50% 18%' }}
                 />
                 <div className="ph-tint" />
                 <div className="story-namecard">
@@ -348,7 +347,7 @@ export default function BookPage() {
             </div>
             <div className="gcta-stat reveal dly2">
               <div className="v">
-                <Counter to={140} suffix="+" suffixClassName="u" />
+                <Counter to={50} suffix="+" suffixClassName="u" />
               </div>
               <div className="k">Projects commissioned</div>
             </div>

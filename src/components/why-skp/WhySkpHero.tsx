@@ -8,7 +8,7 @@ import { ANCHORS } from '@/lib/routes';
 const TRUST_POINTS = [
   '30+ years of engineering',
   'Authorised Waaree distributor',
-  '140+ projects commissioned',
+  '50+ projects commissioned',
 ];
 
 /** `.whero` — Why SKP hero with the stacked photo composition. */

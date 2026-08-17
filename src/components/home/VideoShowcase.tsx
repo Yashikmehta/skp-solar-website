@@ -5,15 +5,13 @@ import { useEffect, useState } from 'react';
 import { AmbientOrb } from '@/components/ui/AmbientOrb';
 import { Icon } from '@/components/ui/Icon';
 import { Hl, SectionHeading } from '@/components/ui/SectionHeading';
-import { featuredVideo, sideVideos, type VideoItem } from '@/content/home';
+import { featuredVideo, type VideoItem } from '@/content/home';
 
 /**
  * `.vid` — the video showcase and its lightbox.
  *
- * HANDOFF.md §8 lists real video files as still outstanding, so the modal
- * shows the poster frame exactly as the approved design does. When the real
- * sources land, swap the `<Image>` inside `.vmodal-frame` for a `<video>` /
- * embed — no other change is needed.
+ * Featured (and any item with `src`) plays a real `<video>` in the modal.
+ * Side video cards are hidden for now — data remains in `sideVideos` in home.ts.
  */
 export function VideoShowcase() {
   const [active, setActive] = useState<VideoItem | null>(null);
@@ -53,7 +51,7 @@ export function VideoShowcase() {
           body="Real installations. Real customers. Real energy savings."
         />
 
-        <div className="vid-grid">
+        <div className="vid-grid vid-grid-solo">
           <button
             type="button"
             className="vid-feat reveal-x"
@@ -65,7 +63,7 @@ export function VideoShowcase() {
                 src={featuredVideo.thumbnail}
                 alt={featuredVideo.alt}
                 fill
-                sizes="(max-width: 900px) 100vw, 58vw"
+                sizes="(max-width: 900px) 100vw, 70vw"
               />
             </div>
             <div className="vid-grad" />
@@ -81,37 +79,6 @@ export function VideoShowcase() {
               <div className="vid-title">{featuredVideo.title}</div>
             </div>
           </button>
-
-          <div className="vid-side">
-            {sideVideos.map((video, index) => (
-              <button
-                type="button"
-                className={`vid-card reveal dly${index + 1}`}
-                key={video.title}
-                onClick={() => setActive(video)}
-                aria-label={`Play: ${video.title}`}
-              >
-                <div className="vid-thumb">
-                  <Image
-                    src={video.thumbnail}
-                    alt={video.alt}
-                    fill
-                    sizes="(max-width: 900px) 100vw, 40vw"
-                  />
-                </div>
-                <div className="vid-grad" />
-                <span className="vid-playbtn">
-                  <Icon name="play" />
-                </span>
-                <div className="vid-meta">
-                  <div className="vid-cat">
-                    {video.category} · {video.duration}
-                  </div>
-                  <div className="vid-title">{video.title}</div>
-                </div>
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -133,17 +100,29 @@ export function VideoShowcase() {
             <Icon name="close" />
           </button>
           <div className="vmodal-frame">
-            {active ? (
-              <Image src={active.thumbnail} alt={active.alt} fill sizes="90vw" />
+            {active?.src ? (
+              <video
+                key={active.src}
+                className="vmodal-video"
+                src={active.src}
+                poster={active.thumbnail}
+                controls
+                autoPlay
+                playsInline
+              />
+            ) : active ? (
+              <>
+                <Image src={active.thumbnail} alt={active.alt} fill sizes="90vw" />
+                <div className="vid-grad" />
+                <span className="vid-playbtn">
+                  <Icon name="play" />
+                </span>
+                <div className="vmodal-note">
+                  <div className="vid-title">{active.title}</div>
+                  <p>{active.category}</p>
+                </div>
+              </>
             ) : null}
-            <div className="vid-grad" />
-            <span className="vid-playbtn">
-              <Icon name="play" />
-            </span>
-            <div className="vmodal-note">
-              <div className="vid-title">{active?.title}</div>
-              <p>{active?.category}</p>
-            </div>
           </div>
         </div>
       </div>

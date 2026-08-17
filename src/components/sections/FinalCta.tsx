@@ -17,7 +17,6 @@ export interface FinalCtaStat {
 }
 
 interface FinalCtaProps {
-  kicker: string;
   title: ReactNode;
   subtitle: string;
   actions: FinalCtaAction[];
@@ -30,11 +29,10 @@ interface FinalCtaProps {
 
 /**
  * `.fcta` — the final CTA band, identical on all six pages (HANDOFF.md §4).
- * Orbs, kicker, headline, actions, trust row and the optional stat strip all
- * follow the approved markup order and reveal delays.
+ * Orbs, headline, actions, trust row and the optional stat strip follow the
+ * approved markup order and reveal delays.
  */
 export function FinalCta({
-  kicker,
   title,
   subtitle,
   actions,
@@ -48,9 +46,6 @@ export function FinalCta({
       <div className="fcta-orb2" data-parallax="-0.04" />
       <div className="wrap">
         <div className="fcta-inner">
-          <div className="fcta-kicker reveal">
-            <i /> {kicker}
-          </div>
           <h2 className="reveal dly1">{title}</h2>
           <p className="fcta-sub reveal dly2">{subtitle}</p>
 
