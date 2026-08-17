@@ -12,6 +12,7 @@ export const ROUTES = {
   why: '/why-skp',
   calculator: '/solar-calculator',
   book: '/the-book',
+  blogs: '/blogs',
   contact: '/contact',
 } as const;
 
@@ -25,6 +26,7 @@ export const ANCHORS = {
   videos: '/#videos',
   productCategories: '/products#categories',
   enquiry: '/contact#enquiry',
+  latestInsights: '/blogs#latest',
 } as const;
 
 /**
@@ -35,6 +37,9 @@ export const ANCHORS = {
  * alongside "Home" on the homepage — two `aria-current="page"` items at once,
  * which is both wrong for screen readers and visibly wrong in the gold
  * `.menu a[aria-current="page"]` treatment.
+ *
+ * `/blogs` also lights up on `/blogs/<slug>` — the `startsWith` branch already
+ * covers it, so an article keeps "Blogs" marked as the current section.
  */
 export function isActiveRoute(href: string, pathname: string): boolean {
   if (href.includes('#')) return false;

@@ -94,6 +94,7 @@ export const navigation: NavItem[] = [
   { label: 'Why SKP', href: ROUTES.why },
   { label: 'Calculator', href: ROUTES.calculator },
   { label: 'The Book', href: ROUTES.book },
+  { label: 'Blogs', href: ROUTES.blogs },
   { label: 'Contact', href: ROUTES.contact },
 ];
 
