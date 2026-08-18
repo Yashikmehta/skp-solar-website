@@ -275,20 +275,23 @@ a:hover{color:var(--gold)}
   #book .cta-row .cta .circ svg{width:9px;height:9px}
   #book .cta-row .cta-ghost svg{width:14px;height:14px;flex-shrink:0}
   .story-grid{gap:14px;margin-top:18px}
-  #story .story-photo-col{display:grid;grid-template-columns:1fr 1fr;gap:9px 10px;align-items:stretch;max-width:none;overflow:visible}
-  #story .story-photo{border-radius:16px;aspect-ratio:3/4;box-shadow:0 16px 36px rgba(14,26,60,.18);overflow:visible}
-  #story .story-photo img,#story .story-photo > span,#story .story-photo .ph-tint{border-radius:16px}
+  #story .sec-head2{position:relative;z-index:2;margin-bottom:20px;max-width:none}
+  #story .sec-head2 p{font-size:.8rem;line-height:1.5;margin-bottom:0}
+  #story .story-grid{position:relative;z-index:1;margin-top:0;gap:20px}
+  #story .story-photo-col{display:flex;flex-direction:column;gap:12px;align-items:stretch;max-width:none;width:100%;overflow:hidden}
+  #story .story-photo{width:82%;margin-inline:auto;aspect-ratio:9/10;border-radius:20px;box-shadow:0 16px 36px rgba(14,26,60,.18);overflow:hidden}
+  #story .story-photo img,#story .story-photo > span,#story .story-photo .ph-tint{border-radius:20px}
   #story .story-photo > span{overflow:hidden}
-  #story .story-namecard{left:10px;right:10px;bottom:10px;padding:9px 11px;border-radius:12px}
-  #story .story-namecard b{font-size:.82rem}
-  #story .story-namecard span{font-size:.62rem;line-height:1.3}
+  #story .story-namecard{left:50%;right:auto;bottom:14px;transform:translateX(-50%);width:fit-content;max-width:calc(100% - 32px);align-items:center;text-align:center;padding:8px 12px;border-radius:14px}
+  #story .story-namecard b{font-size:.88rem;line-height:1.2;white-space:nowrap}
+  #story .story-namecard span{display:block;font-size:.68rem;line-height:1.3;white-space:nowrap}
   #story .story-statcard{top:0;right:0;transform:translate(33%,-33%);z-index:2;padding:8px 10px;border-radius:12px;box-shadow:0 14px 30px rgba(14,26,60,.14)}
   #story .story-statcard .v{font-size:.99rem}
   #story .story-statcard .v span{font-size:.72rem}
   #story .story-statcard .k{font-size:.47rem;margin-top:2px;letter-spacing:.04em}
-  #story .story-plant{margin-top:0;border-radius:16px;aspect-ratio:3/4}
+  #story .story-plant{width:100%;margin-top:0;border-radius:16px;aspect-ratio:16/10}
   #story .story-plant .cap{padding:10px 11px;font-size:.62rem;line-height:1.3}
-  #story .story-time{grid-column:1 / -1;margin-top:11px}
+  #story .story-time{margin-top:4px;padding-left:4px}
   #story .story-mile{padding:0 0 12px 18px}
   #story .story-mile .dot{width:13px;height:13px;left:-7px}
   #story .story-mile .yr{font-size:.66rem}
