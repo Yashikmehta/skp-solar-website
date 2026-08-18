@@ -11,33 +11,24 @@ export interface FinalCtaAction {
   circled?: boolean;
 }
 
-export interface FinalCtaStat {
-  value: ReactNode;
-  label: string;
-}
-
 interface FinalCtaProps {
   title: ReactNode;
   subtitle: string;
   actions: FinalCtaAction[];
   /** Short trust points rendered under the actions, separated by dots. */
   trust?: string[];
-  /** Optional four-up stat strip. */
-  stats?: FinalCtaStat[];
   id?: string;
 }
 
 /**
  * `.fcta` — the final CTA band, identical on all six pages (HANDOFF.md §4).
- * Orbs, headline, actions, trust row and the optional stat strip follow the
- * approved markup order and reveal delays.
+ * Orbs, headline, actions, and trust row follow the approved markup order and reveal delays.
  */
 export function FinalCta({
   title,
   subtitle,
   actions,
   trust,
-  stats,
   id = 'contact',
 }: FinalCtaProps) {
   return (
@@ -79,17 +70,6 @@ export function FinalCta({
                     <Icon name="check" /> {point}
                   </span>
                 </Fragment>
-              ))}
-            </div>
-          ) : null}
-
-          {stats && stats.length > 0 ? (
-            <div className="fcta-stats">
-              {stats.map((stat) => (
-                <div className="fcta-stat reveal" key={stat.label}>
-                  <div className="v">{stat.value}</div>
-                  <div className="k">{stat.label}</div>
-                </div>
               ))}
             </div>
           ) : null}

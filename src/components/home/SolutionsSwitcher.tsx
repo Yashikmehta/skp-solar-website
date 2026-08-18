@@ -101,9 +101,6 @@ export function SolutionsSwitcher() {
     <section className="sol" id="solutions">
       <div className="wrap">
         <div className="sol-head">
-          <div className="sol-badge">
-            <i /> SKP Solar World · Solutions
-          </div>
           <h2>Solar, engineered for every site</h2>
           <p>
             From factory rooftops to family homes, explore our complete range — by where it

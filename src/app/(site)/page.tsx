@@ -13,7 +13,6 @@ import { VideoShowcase } from '@/components/home/VideoShowcase';
 import { Faq } from '@/components/sections/Faq';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { ValueCards } from '@/components/sections/ValueCards';
-import { Counter } from '@/components/ui/Counter';
 import { Hl } from '@/components/ui/SectionHeading';
 import { homeFaqs } from '@/content/faqs-home';
 import { valueCards } from '@/content/home';
@@ -73,15 +72,6 @@ export default function HomePage() {
         actions={[
           { label: 'Call us now', href: telHref, variant: 'ghost', icon: 'phone' },
           { label: 'WhatsApp', href: waHref, variant: 'wa' },
-        ]}
-        stats={[
-          { value: <Counter to={30} suffix="+" suffixClassName="u" />, label: 'Years in manufacturing' },
-          { value: <Counter to={50} suffix="+" suffixClassName="u" />, label: 'Projects commissioned' },
-          {
-            value: <Counter to={4.9} decimals={1} suffix="★" suffixClassName="u" />,
-            label: 'Average customer rating',
-          },
-          { value: <Counter to={25} suffix="-yr" suffixClassName="u" />, label: 'Performance care plan' },
         ]}
         trust={[
           'Authorised Waaree distributor',
