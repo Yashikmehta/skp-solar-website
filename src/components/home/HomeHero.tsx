@@ -33,8 +33,8 @@ export function HomeHero() {
                 className="globe-img"
                 src="/assets/hero-globe.png"
                 alt="Solar globe"
-                width={459}
-                height={459}
+                width={657}
+                height={657}
                 priority
               />
             </div>
