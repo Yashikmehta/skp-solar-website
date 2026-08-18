@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import '@/styles/pages/why-skp.css';
 
-import { FinalCta } from '@/components/sections/FinalCta';
 import { ValueCards } from '@/components/sections/ValueCards';
 import { AmbientOrb } from '@/components/ui/AmbientOrb';
 import { Counter } from '@/components/ui/Counter';
@@ -13,9 +12,8 @@ import { ProcessTimeline } from '@/components/why-skp/ProcessTimeline';
 import { TrustSection } from '@/components/why-skp/TrustSection';
 import { WhySkpHero } from '@/components/why-skp/WhySkpHero';
 import { legacyCards, waareeCards, whySkpCards } from '@/content/why-skp';
-import { ANCHORS, ROUTES } from '@/lib/routes';
+import { ROUTES } from '@/lib/routes';
 import { pageMetadata } from '@/lib/seo';
-import { telHref } from '@/lib/site';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Why SKP Solar World — Built on Engineering',
@@ -191,36 +189,6 @@ export default function WhySkpPage() {
 
       <ProcessTimeline />
       <TrustSection />
-
-      <FinalCta
-        title={
-          <>
-            Ready to Build on <Hl>Real Engineering?</Hl>
-          </>
-        }
-        subtitle="Book a free site survey and get honest, conservative numbers from the engineers who will actually build your plant."
-        actions={[
-          {
-            label: 'Book Free Site Survey',
-            href: ANCHORS.enquiry,
-            variant: 'gold',
-            icon: 'arrowRight',
-            circled: true,
-          },
-          {
-            label: 'Calculate Solar Savings',
-            href: ROUTES.calculator,
-            variant: 'ghost',
-            icon: 'calculator',
-          },
-          { label: 'Call Now', href: telHref, variant: 'ghost', icon: 'phone' },
-        ]}
-        trust={[
-          'Authorised Waaree distributor',
-          'In-house engineering team',
-          'Honest, conservative estimates',
-        ]}
-      />
     </>
   );
 }

@@ -36,6 +36,25 @@ export function ProductCatalogue() {
 
   function selectCategory(next: ProductCategory) {
     setCategory(next);
+
+    const isMobile = window.matchMedia('(max-width: 760px)').matches;
+    if (isMobile) {
+      /* Keep the tab bar horizontal-only — scroll the active tab into view
+         without jumping the page vertically. */
+      requestAnimationFrame(() => {
+        const index = productCategories.findIndex((tab) => tab.key === next);
+        const button = document.querySelector<HTMLButtonElement>(
+          `#categories .pcats-row button:nth-child(${index + 1})`,
+        );
+        button?.scrollIntoView({
+          behavior: reduced ? 'auto' : 'smooth',
+          inline: 'center',
+          block: 'nearest',
+        });
+      });
+      return;
+    }
+
     const bar = document.getElementById('categories');
     if (!bar) return;
     const top = bar.getBoundingClientRect().top + window.scrollY;

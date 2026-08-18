@@ -289,10 +289,10 @@ export function SavingsReport() {
                   <Icon name="phone" />
                   Mobile Number
                 </label>
-                <div className="cf-wrap">
+                <div className="cf-wrap cf-wrap--prefix">
                   <span className="cf-prefix">+91</span>
                   <input
-                    className="cf-input has-prefix"
+                    className="cf-input"
                     id="cfPhone"
                     type="tel"
                     inputMode="numeric"
@@ -341,10 +341,10 @@ export function SavingsReport() {
                   )}
                   Avg. Monthly Electricity Bill
                 </label>
-                <div className="cf-wrap">
+                <div className="cf-wrap cf-wrap--prefix">
                   <span className="cf-prefix">₹</span>
                   <input
-                    className="cf-input has-prefix"
+                    className="cf-input"
                     id="cfBill"
                     type="text"
                     inputMode="numeric"

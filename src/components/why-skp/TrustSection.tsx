@@ -36,7 +36,22 @@ export function TrustSection() {
   const gridRef = useRef<HTMLDivElement>(null);
   const galStripRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
+  const [activeStory, setActiveStory] = useState(0);
+  const [isMobileCarousel, setIsMobileCarousel] = useState(false);
+  const storyWrapping = useRef(false);
   const reduced = usePrefersReducedMotion();
+  const DOT_COUNT = 3;
+  const stories = [testimonials[0], testimonials[2], testimonials[3]];
+  const storyCount = stories.length;
+  const loopedStories = [...stories, ...stories, ...stories];
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 760px)');
+    const update = () => setIsMobileCarousel(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   /* Mobile swipe carousel — track which project card is in view so the
      dot indicator below the strip can highlight it. */
@@ -94,9 +109,104 @@ export function TrustSection() {
     );
     groups.forEach((group) => observer.observe(group));
     return () => observer.disconnect();
-  }, [reduced]);
+  }, [reduced, isMobileCarousel, storyCount]);
 
-  const stories = [testimonials[0], testimonials[2], testimonials[3]];
+  /* Mobile swipe carousel — start in the middle copy so users can loop both ways. */
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!isMobileCarousel || !grid || storyCount === 0) return;
+
+    const startInMiddle = () => {
+      const cards = grid.querySelectorAll<HTMLElement>('.tst-card');
+      const middle = cards[storyCount];
+      if (!middle) return;
+      storyWrapping.current = true;
+      grid.scrollLeft = middle.offsetLeft - 18;
+      setActiveStory(0);
+      requestAnimationFrame(() => {
+        storyWrapping.current = false;
+      });
+    };
+
+    startInMiddle();
+    window.addEventListener('resize', startInMiddle);
+    return () => window.removeEventListener('resize', startInMiddle);
+  }, [isMobileCarousel, storyCount]);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!isMobileCarousel || !grid || storyCount === 0) return;
+
+    const sync = () => {
+      if (storyWrapping.current) return;
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>('.tst-card'));
+      if (cards.length === 0) return;
+
+      const mid = grid.scrollLeft + grid.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      cards.forEach((card, index) => {
+        const center = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(center - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = index;
+        }
+      });
+
+      if (best < storyCount) {
+        storyWrapping.current = true;
+        const twin = cards[best + storyCount];
+        if (twin) grid.scrollLeft = twin.offsetLeft - 18;
+        setActiveStory(best);
+        requestAnimationFrame(() => {
+          storyWrapping.current = false;
+        });
+        return;
+      }
+
+      if (best >= storyCount * 2) {
+        storyWrapping.current = true;
+        const twin = cards[best - storyCount];
+        if (twin) grid.scrollLeft = twin.offsetLeft - 18;
+        setActiveStory(best - storyCount * 2);
+        requestAnimationFrame(() => {
+          storyWrapping.current = false;
+        });
+        return;
+      }
+
+      setActiveStory(best - storyCount);
+    };
+
+    grid.addEventListener('scroll', sync, { passive: true });
+    return () => grid.removeEventListener('scroll', sync);
+  }, [isMobileCarousel, storyCount]);
+
+  const goToStory = (index: number) => {
+    const grid = gridRef.current;
+    if (!grid || storyCount === 0) return;
+    const real = ((index % storyCount) + storyCount) % storyCount;
+    const cards = grid.querySelectorAll<HTMLElement>('.tst-card');
+    const card = cards[real + storyCount];
+    if (!card) return;
+    grid.scrollTo({ left: card.offsetLeft - 18, behavior: 'smooth' });
+    setActiveStory(real);
+  };
+
+  const goToStoryDot = (dotIndex: number) => {
+    if (storyCount <= 1) {
+      goToStory(0);
+      return;
+    }
+    const target = Math.round((dotIndex / (DOT_COUNT - 1)) * (storyCount - 1));
+    goToStory(target);
+  };
+
+  const activeStoryDot =
+    storyCount <= 1
+      ? 0
+      : Math.min(DOT_COUNT - 1, Math.round((activeStory / (storyCount - 1)) * (DOT_COUNT - 1)));
 
   return (
     <section className="trust" id="trust">
@@ -203,12 +313,15 @@ export function TrustSection() {
           <i /> Customer Stories
         </div>
         <div className="trust-tst" ref={gridRef}>
-          {stories.map((item, index) => (
+          {loopedStories.map((item, index) => {
+            const isClone = index < storyCount || index >= storyCount * 2;
+            const revealIndex = index % storyCount;
+            return (
             <div
-              className={`tst-card${item.variant ? ` ${item.variant}` : ''} reveal${
-                index > 0 ? ` dly${index}` : ''
-              }`}
-              key={item.name}
+              className={`tst-card${item.variant ? ` ${item.variant}` : ''}${
+                isClone ? ' is-clone' : ' reveal'
+              }${!isClone && revealIndex > 0 ? ` dly${revealIndex}` : ''}`}
+              key={`${item.name}-${index}`}
             >
               <Stars />
               <p className={`tst-q${item.variant === 'feat' ? ' big' : ''}`}>“{item.quote}”</p>
@@ -253,6 +366,20 @@ export function TrustSection() {
                 </span>
               </div>
             </div>
+            );
+          })}
+        </div>
+
+        <div className="trust-tst-dots" role="tablist" aria-label="Customer story slides">
+          {Array.from({ length: DOT_COUNT }, (_, index) => (
+            <button
+              type="button"
+              key={index}
+              className={`trust-tst-dot${index === activeStoryDot ? ' active' : ''}`}
+              aria-label={`Show customer stories group ${index + 1}`}
+              aria-selected={index === activeStoryDot}
+              onClick={() => goToStoryDot(index)}
+            />
           ))}
         </div>
 

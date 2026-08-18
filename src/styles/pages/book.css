@@ -294,6 +294,10 @@ a:hover{color:var(--gold)}
   #story .story-mile .yr{font-size:.66rem}
   #story .story-mile .ev{font-size:.59rem;line-height:1.35;margin-top:3px}
   .story-text p{font-size:.76rem;line-height:1.55;margin-bottom:12px}
+  #story .cta-row{margin-top:16px;justify-content:center;width:100%}
+  #story .cta-row .cta{font-size:.82rem;padding:12px 24px 12px 13px;gap:10px;line-height:1.2}
+  #story .cta-row .cta .circ{width:27px;height:27px;border-width:1.6px;flex-shrink:0}
+  #story .cta-row .cta .circ svg{width:12px;height:12px}
   .story-quote{font-size:1.16rem;line-height:1.22;margin:0 0 14px}
   .story-lead{font-size:.86rem;line-height:1.45;margin-bottom:13px}
   .story-sub{font-size:.82rem;margin:18px 0 7px}
