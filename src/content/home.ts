@@ -236,6 +236,7 @@ export const featuredVideo: VideoItem = {
   duration: '4:12',
   thumbnail: '/assets/industrial.jpg',
   alt: 'Factory rooftop walkthrough',
+  src: '/assets/skp-featured-video.mp4',
 };
 
 export const sideVideos: VideoItem[] = [
