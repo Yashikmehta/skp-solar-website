@@ -336,32 +336,32 @@ export default function BookPage() {
                 ))}
               </div>
             </div>
-          </div>
 
-          <div className="gcta-stats">
-            <div className="gcta-stat reveal dly1">
-              <div className="v">
-                <Counter to={30} suffix="+" suffixClassName="u" />
+            <div className="gcta-stats">
+              <div className="gcta-stat reveal dly1">
+                <div className="v">
+                  <Counter to={30} suffix="+" suffixClassName="u" />
+                </div>
+                <div className="k">Years in manufacturing</div>
               </div>
-              <div className="k">Years in manufacturing</div>
-            </div>
-            <div className="gcta-stat reveal dly2">
-              <div className="v">
-                <Counter to={50} suffix="+" suffixClassName="u" />
+              <div className="gcta-stat reveal dly2">
+                <div className="v">
+                  <Counter to={50} suffix="+" suffixClassName="u" />
+                </div>
+                <div className="k">Projects commissioned</div>
               </div>
-              <div className="k">Projects commissioned</div>
-            </div>
-            <div className="gcta-stat reveal dly3">
-              <div className="v">
-                <Counter to={4.9} decimals={1} suffix="★" suffixClassName="u" />
+              <div className="gcta-stat reveal dly3">
+                <div className="v">
+                  <Counter to={4.9} decimals={1} suffix="★" suffixClassName="u" />
+                </div>
+                <div className="k">Average customer rating</div>
               </div>
-              <div className="k">Average customer rating</div>
-            </div>
-            <div className="gcta-stat reveal dly4">
-              <div className="v">
-                <Counter to={25} suffix="-yr" suffixClassName="u" />
+              <div className="gcta-stat reveal dly4">
+                <div className="v">
+                  <Counter to={25} suffix="-yr" suffixClassName="u" />
+                </div>
+                <div className="k">Performance care plan</div>
               </div>
-              <div className="k">Performance care plan</div>
             </div>
           </div>
         </div>
